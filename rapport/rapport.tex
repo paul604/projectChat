@@ -11,6 +11,10 @@
 \usepackage{enumitem}
 \usepackage{microtype}
 \usepackage[none]{hyphenat}
+\usepackage[toc]{glossaries}
+\makeglossaries
+
+\input{acronym.tex}
 
  \geometry{
  a4paper,
@@ -40,15 +44,15 @@
   numberstyle=\tiny\color{codegray},
   stringstyle=\color{codepurple},
   basicstyle=\footnotesize,
-  breakatwhitespace=false,
-  breaklines=true,
-  captionpos=b,
-  keepspaces=true,
-  numbers=left,
-  numbersep=5pt,
-  showspaces=false,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
   showstringspaces=false,
-  showtabs=false,
+  showtabs=false,                  
   tabsize=4
 }
 
@@ -71,15 +75,15 @@
 
 \pretitle{
   \begin{center}
-  \includegraphics[width=60mm,height=31mm]{univ.png}
+  \includegraphics[width=60mm,height=31mm]{img/univ.png}
   \qquad \qquad
-  \includegraphics[width=37mm,height=31mm]{iutNantes.jpg}\\[\bigskipamount]
+  \includegraphics[width=37mm,height=31mm]{img/iutNantes.jpg}\\[\bigskipamount]
 }
-
+ 
 \posttitle{
  \end{center}
 }
-
+  
 \title{Back End marketing conversationnel\\
     \normalsize Technologies web côté serveur}
 \date{\today}
@@ -89,7 +93,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{Paul Orhon --- \small LP -- MiAR}
-\lhead{Marketing conversationne --- Technologies web côté serveur}
+\lhead{Marketing conversationnel --- Technologies web côté serveur}
 \rfoot{Page \thepage}
 \lfoot{INSTITUT UNIVERSITAIRE DE TECHNOLOGIE - NANTES}
 
@@ -99,14 +103,79 @@
 \maketitle%page titre
 \tableofcontents
 
+
+\listoffigures
+
+
 \clearpage
 
 \section{Projet}
 Ce projet a pour but de développer le Back End d’un marketing conversationnel.
-Pour cela il faut développer différant service pour pouvoirs mettre en place ce system.\\
-Voici le workflow classique d'un utilisateur:
-\includegraphics[width=\linewidth]{}
+Pour cela il faut développer différent service pour pouvoirs mettre en place ce système.
+
+Voici le workflow classique d'un utilisateur:\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{img/workflow_user.png}
+    \caption{Workflow classique d'un utilisateur}
+\end{figure}
 
 
+
+\section{Contexte du projet}
+\subsection{Objectifs}
+L’objectif est de développer le Back End d’un marketing conversationnel, en exposant les service avec une api \acrshort{REST}*.
+
+Toute les conversations doivent être conservées pour pouvoir effectuer des statistiques.
+
+Le projet doit être séparer en sous module, permettant de manipuler, modifier et diffuser plus facilement.
+
+
+\subsection{Contraintes}
+\begin{enumerate}
+    \item Le projet est réalisé par une seul personne.
+    \item Le programme sera développé pour la plateforme Java.
+    \begin{itemize}
+        \item Il se programmé en Java pour des raisons d’expertises du développeur. 
+    \end{itemize}
+    \item Le rapport est à rendre le 20 novembre 2017 à 17h50.
+    \item Le projet est à rendre le 5 décembre 2017 à 12h20.
+    \item le système doit être testé, testable et le couplage doit être lâche.
+\end{enumerate}
+
+
+\section{Les vues}
+\subsection{Vue globale du projet}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[]{img/Diagramme_sep_Back_Front.png}
+    \caption{Diagramme de la séparation du Back / Front End}
+    \label{fig:diag_back_front}
+\end{figure}
+Comme dit précédemment, seule le back end et son interface sera développer (partie en rouge de la figure \ref{fig:diag_back_front}).
+
+\clearpage
+\subsection{Vue logique du Back End}
+Le back end sera diviser en plusieurs modules permettent ainsi de diviser les tâches, de réaliser un couplage lâche et de faciliter le maintien du système.
+\begin{figure}[h]
+    \centering
+    \includegraphics[]{img/Vue_logique_back.png}
+    \caption{Diagramme de la vue logique du backEnd}
+\end{figure}
+
+Ici chaque couleur correspond à un module.
+
+\begin{description}
+    \item [API]
+    \item [Application] qui contient aussi la Présentation du fait de l'utilisation du framework Spring qui permet une mise en place simple d'une api \acrshort{REST} et donc de l'interface du back end. 
+    \item [Domaine]
+    \item [Infrastructure]
+\end{description}
+
+
+\clearpage
+\printglossary[type=\acronymtype, title=Acronymes]
 
 \end{document}
+    
