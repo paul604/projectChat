@@ -133,10 +133,10 @@ Le projet doit être séparer en sous module, permettant de manipuler, modifier 
 
 \subsection{Contraintes}
 \begin{enumerate}
-    \item Le projet est réalisé par une seul personne.
+    \item Le projet est à réalisé seul.
     \item Le programme sera développé pour la plateforme Java.
     \begin{itemize}
-        \item Il se programmé en Java pour des raisons d’expertises du développeur. 
+        \item Il sera programmé en Java pour des raisons de connaissance.
     \end{itemize}
     \item Le rapport est à rendre le 20 novembre 2017 à 17h50.
     \item Le projet est à rendre le 5 décembre 2017 à 12h20.
@@ -167,11 +167,15 @@ Le back end sera diviser en plusieurs modules permettent ainsi de diviser les t�
 Ici chaque couleur correspond à un module.
 
 \begin{description}
-    \item [API]
-    \item [Application] qui contient aussi la Présentation du fait de l'utilisation du framework Spring qui permet une mise en place simple d'une api \acrshort{REST} et donc de l'interface du back end. 
-    \item [Domaine]
-    \item [Infrastructure]
+    \item [Application] qui contient aussi la Présentation du fait de l'utilisation du framework Spring qui permet une mise en place simple d'une api \acrshort{REST} et donc de l'interface du back end. Sont rôle est de récupérer les requête arrivant a l'interface, de les envoyer au bon service et de répondre.
+    \item [Domaine] correspond au \textit{services} de l’application.
+    \item [Infrastructure] correspond à l'implémentassions des différentes              \textbf{\textit{interface}} et \textbf{\textit{class abstraites}}.
+    \item [API] contient les \textbf{\textit{interface}} des class communes aux modules. Cela permet notamment au \textbf{domaine} d'utiliser une class et de laisser l'implémentassions à l'\textbf{Infrastructure}.
 \end{description}
+
+projection
+
+intéret des couches
 
 
 \clearpage
