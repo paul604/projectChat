@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[frenchb]{babel}
 \usepackage[T1]{fontenc}
@@ -11,10 +11,10 @@
 \usepackage{enumitem}
 \usepackage{microtype}
 \usepackage[none]{hyphenat}
-\usepackage[toc]{glossaries}
-\makeglossaries
+%\usepackage[toc]{glossaries}
+%\makeglossaries
 
-\input{acronym.tex}
+%\input{acronym.tex}
 
  \geometry{
  a4paper,
@@ -44,15 +44,15 @@
   numberstyle=\tiny\color{codegray},
   stringstyle=\color{codepurple},
   basicstyle=\footnotesize,
-  breakatwhitespace=false,         
-  breaklines=true,                 
-  captionpos=b,                    
-  keepspaces=true,                 
-  numbers=left,                    
-  numbersep=5pt,                  
-  showspaces=false,                
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
   showstringspaces=false,
-  showtabs=false,                  
+  showtabs=false,
   tabsize=4
 }
 
@@ -79,11 +79,11 @@
   \qquad \qquad
   \includegraphics[width=37mm,height=31mm]{img/iutNantes.jpg}\\[\bigskipamount]
 }
- 
+
 \posttitle{
  \end{center}
 }
-  
+
 \title{Back End marketing conversationnel\\
     \normalsize Technologies web côté serveur}
 \date{\today}
@@ -103,47 +103,51 @@
 \maketitle%page titre
 \tableofcontents
 
-
 \listoffigures
 
 
 \clearpage
 
 \section{Projet}
-Ce projet a pour but de développer le Back End d’un marketing conversationnel.
-Pour cela il faut développer différent service pour pouvoirs mettre en place ce système.
+Dans le cadre du module de technologies web côté serveur, il a été demander de créer une partie du back end d’un marketing conversationnel.
+\\
 
-Voici le workflow classique d'un utilisateur:\\
+Pour cela il va falloir développer différent services pour pouvoirs mettre en place ce système.
+
+
+
+\section{Contexte du projet}
+\subsection{Objectifs}
+L'objectif est donc de développer une partie du Back End d’un marketing conversationnel, en exposant les service avec une api REST.
+\\
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{img/workflow_user.png}
     \caption{Workflow classique d'un utilisateur}
 \end{figure}
 
+La partie à développer est l'envoi des messages et les sauvegardes, pour conserver les messages afin de d'afficher l'historique à l'utilisateur et pouvoir effectuer des statistiques anonyme sur toute les conversation.
+\\
 
-
-\section{Contexte du projet}
-\subsection{Objectifs}
-L’objectif est de développer le Back End d’un marketing conversationnel, en exposant les service avec une api \acrshort{REST}*.
-
-Toute les conversations doivent être conservées pour pouvoir effectuer des statistiques.
-
-Le projet doit être séparer en sous module, permettant de manipuler, modifier et diffuser plus facilement.
+Le projet doit être séparer en sous module, cela permettra de manipuler, modifier et diffuser plus facilement.
 
 
 \subsection{Contraintes}
 \begin{enumerate}
     \item Le projet est à réalisé seul.
-    \item Le programme sera développé pour la plateforme Java.
+    \item Le programme sera développé sur la plateforme Java.
     \begin{itemize}
         \item Il sera programmé en Java pour des raisons de connaissance.
     \end{itemize}
     \item Le rapport est à rendre le 20 novembre 2017 à 17h50.
     \item Le projet est à rendre le 5 décembre 2017 à 12h20.
-    \item le système doit être testé, testable et le couplage doit être lâche.
+    \item Le système doit être testé et testable sur le poste du développeur.
+    \item Le couplage doit être lâche.
 \end{enumerate}
 
 
+\clearpage
 \section{Les vues}
 \subsection{Vue globale du projet}
 
@@ -155,9 +159,12 @@ Le projet doit être séparer en sous module, permettant de manipuler, modifier 
 \end{figure}
 Comme dit précédemment, seule le back end et son interface sera développer (partie en rouge de la figure \ref{fig:diag_back_front}).
 
-\clearpage
+
 \subsection{Vue logique du Back End}
 Le back end sera diviser en plusieurs modules permettent ainsi de diviser les tâches, de réaliser un couplage lâche et de faciliter le maintien du système.
+
+Cette représentation repose sur le \textit{domain-driven design} \footnote{\textit{domain-driven design}(DDD): en français \textit{conception pilotée par le domaine} est une approche de la conception de logiciel. Plus d'information: \url{https://en.wikipedia.org/wiki/Domain-driven_design}}.
+
 \begin{figure}[h]
     \centering
     \includegraphics[]{img/Vue_logique_back.png}
@@ -166,20 +173,53 @@ Le back end sera diviser en plusieurs modules permettent ainsi de diviser les t�
 
 Ici chaque couleur correspond à un module.
 
+
 \begin{description}
-    \item [Application] qui contient aussi la Présentation du fait de l'utilisation du framework Spring qui permet une mise en place simple d'une api \acrshort{REST} et donc de l'interface du back end. Sont rôle est de récupérer les requête arrivant a l'interface, de les envoyer au bon service et de répondre.
-    \item [Domaine] correspond au \textit{services} de l’application.
-    \item [Infrastructure] correspond à l'implémentassions des différentes              \textbf{\textit{interface}} et \textbf{\textit{class abstraites}}.
+    \item [Application] contient la \textbf{présentation} du fait de l'utilisation du \textit{framework Spring} qui permet une mise en place simple d'une api REST et donc de l'interface du back end. Sont rôle est de récupérer les requête arrivant à l'interface, de les envoyer au bon service et de répondre.
+    \item [Domaine] correspond au \textit{services} de l'application.
+    \item [Infrastructure] correspond à l'implémentassions des différentes \textbf{\textit{interfaces}} et \textbf{\textit{class abstraites}}.
     \item [API] contient les \textbf{\textit{interface}} des class communes aux modules. Cela permet notamment au \textbf{domaine} d'utiliser une class et de laisser l'implémentassions à l'\textbf{Infrastructure}.
 \end{description}
 
-projection
+\section{Implémentation}
 
-intéret des couches
+\subsection{Les Services}
+Le back end va donc proposer différant services.
+
+\subsubsection{L'envoi de messages}
+Un service proposera au client d'envoyer un message ver le serveur.
+Ce message sera	transmis au personne concerner. Il sera aussi sauvegarder. Cette sauvegarde est utile pour l'historique de conversation de l'utilisateur (cf. \ref{recup_histo}) et pour réaliser des statistique sur l'ensemble des demande.
 
 
-\clearpage
-\printglossary[type=\acronymtype, title=Acronymes]
+\subsubsection{L'envoi de réponse}
+
+
+\subsubsection{Récupérer l'historique} \label{recup_histo}
+
+
+
+\subsection{Plateforme / Langage}
+Comme dit précédemment le programme sera développer pour la plateforme java et développer en java et plus précisément dans la version 8. Cela permet de faciliter le déploiement du programme.
+\\
+Nous allons aussi utiliser \textit{Spring Boot} qui va permettre une gestion simplifier des différent services mis en place et de leur présentation sous forme de service REST.
+
+\subsection{Outils}
+Pour ce projet nous utiliserons différant outils.
+
+\subsubsection{Maven}
+\textit{Maven} va être utiles pour la séparation du programme en module, la gestion des dépendance et les build.
+
+\subsubsection{GitHub}
+\textit{GitHub} va être utiliser pour gérée les versions du projet. Cela va aussi permettre le partage des sources sous licence MIT affin de récupérer le retour des utilisateurs et de leur amélioration.
+
+\subsubsection{Travis-ci}
+\textit{Travis-ci} est un outil d'intégration continue. Il va permettre d'effectuer les build et les tests sous différent environnement UNIX. Il permet aussi de déployer les build.\\
+Il est aussi possible d'utiliser \textit{AppVeyor} pour un environnement Windows 
+
+
+
+
+%\clearpage
+%\printglossary[type=\acronymtype, title=Acronymes]
 
 \end{document}
-    
