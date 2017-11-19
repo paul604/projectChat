@@ -188,14 +188,18 @@ Le back end va donc proposer différant services.
 
 \subsubsection{L'envoi de messages}
 Un service proposera au client d'envoyer un message ver le serveur.
-Ce message sera	transmis au personne concerner. Il sera aussi sauvegarder. Cette sauvegarde est utile pour l'historique de conversation de l'utilisateur (cf. \ref{recup_histo}) et pour réaliser des statistique sur l'ensemble des demande.
+Ce message sera	transmis au personnes concerner. Il sera aussi sauvegarder. Cette sauvegarde est utile pour l'historique de conversation de l'utilisateur (cf. \ref{recup_histo}) et pour réaliser des statistique sur l'ensemble des demande.
 
 
 \subsubsection{L'envoi de réponse}
+Suite à l'envoi d'un message par un utilisateur, si il le peut, le serveur envoi un message sinon la personne concerner répond à la demande.\\
+Pour le moment le serveur répondra avec un message générique, pour cause d'un manque de temps et de moyen.
 
 
 \subsubsection{Récupérer l'historique} \label{recup_histo}
-
+L'or de sa connections l'utilisateur peu récupérer son historique de conversation afin de reprend le fil de sa conversation.
+\\
+Si l'utilisateur na pas d'historique une liste vide luis est retourner.
 
 
 \subsection{Plateforme / Langage}
@@ -208,6 +212,8 @@ Pour ce projet nous utiliserons différant outils.
 
 \subsubsection{Maven}
 \textit{Maven} va être utiles pour la séparation du programme en module, la gestion des dépendance et les build.
+
+\subsubsection{MongoDB}
 
 \subsubsection{GitHub}
 \textit{GitHub} va être utiliser pour gérée les versions du projet. Cela va aussi permettre le partage des sources sous licence MIT affin de récupérer le retour des utilisateurs et de leur amélioration.
