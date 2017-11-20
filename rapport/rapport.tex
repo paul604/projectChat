@@ -14,6 +14,9 @@
 %\usepackage[toc]{glossaries}
 %\makeglossaries
 
+\usepackage{perpage} %the perpage package
+\MakePerPage{footnote} %the perpage package command
+
 %\input{acronym.tex}
 
  \geometry{
@@ -34,7 +37,7 @@
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 
-\headheight = 14pt
+\headheight = 15pt
 
 \hypersetup{colorlinks = true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
 
@@ -127,7 +130,7 @@ L'objectif est donc de développer une partie du Back End d’un marketing conve
     \caption{Workflow classique d'un utilisateur}
 \end{figure}
 
-La partie à développer est l'envoi des messages et les sauvegardes, pour conserver les messages afin de d'afficher l'historique à l'utilisateur et pouvoir effectuer des statistiques anonyme sur toute les conversation.
+La partie à développer est l'envoi des messages et les sauvegardes des données. Ces sauvegardes sont utilisé pour conserver les messages, qui seront daté, afin d'afficher l'historique à l'utilisateur et pouvoir effectuer des statistiques anonyme sur toute les conversation.
 \\
 
 Le projet doit être séparer en sous module, cela permettra de manipuler, modifier et diffuser plus facilement.
@@ -140,8 +143,9 @@ Le projet doit être séparer en sous module, cela permettra de manipuler, modif
     \begin{itemize}
         \item Il sera programmé en Java pour des raisons de connaissance.
     \end{itemize}
-    \item Le rapport est à rendre le 20 novembre 2017 à 17h50.
+    \item Le rapport est à rendre le 23 novembre 2017 à 17h50.
     \item Le projet est à rendre le 5 décembre 2017 à 12h20.
+    \item Le système doit sauvegarder les messages pour réaliser des statistiques et pour l'historique des utilisateurs.
     \item Le système doit être testé et testable sur le poste du développeur.
     \item Le couplage doit être lâche.
 \end{enumerate}
@@ -175,10 +179,10 @@ Ici chaque couleur correspond à un module.
 
 
 \begin{description}
-    \item [Application] contient la \textbf{présentation} du fait de l'utilisation du \textit{framework Spring} qui permet une mise en place simple d'une api REST et donc de l'interface du back end. Sont rôle est de récupérer les requête arrivant à l'interface, de les envoyer au bon service et de répondre.
-    \item [Domaine] correspond au \textit{services} de l'application.
-    \item [Infrastructure] correspond à l'implémentassions des différentes \textbf{\textit{interfaces}} et \textbf{\textit{class abstraites}}.
-    \item [API] contient les \textbf{\textit{interface}} des class communes aux modules. Cela permet notamment au \textbf{domaine} d'utiliser une class et de laisser l'implémentassions à l'\textbf{Infrastructure}.
+    \item [Application] contient la \textbf{présentation} du fait de l'utilisation du framework \textit{Spring} qui permet une mise en place simple d'une api REST et donc de l'interface du back end. Sont rôle est de récupérer les requête arrivant à l'interface, de les envoyer au bon service et de répondre.
+    \item [Domaine] correspond au \textit{services} de l'application. Contient aussi les interface, pressant  dans l'\textbf{API} et implémenté dans l'\textbf{infrastructure}, utile à ces services.
+    \item [Infrastructure] correspond à l'implémentation des différentes \textbf{\textit{interfaces}} et \textbf{\textit{classe abstraites}} qui sont les factory. Il gère le stockage persistant des données.
+    \item [API] contient les \textbf{\textit{interface}} des classe communes aux modules. Cela permet notamment au \textbf{domaine} d'utiliser une classe et de laisser l'implémentation à l'\textbf{Infrastructure}.
 \end{description}
 
 \section{Implémentation}
@@ -205,21 +209,25 @@ Si l'utilisateur na pas d'historique une liste vide luis est retourner.
 \subsection{Plateforme / Langage}
 Comme dit précédemment le programme sera développer pour la plateforme java et développer en java et plus précisément dans la version 8. Cela permet de faciliter le déploiement du programme.
 \\
-Nous allons aussi utiliser \textit{Spring Boot} qui va permettre une gestion simplifier des différent services mis en place et de leur présentation sous forme de service REST.
+
+Nous allons aussi utiliser \textit{Spring Boot} qui est un framework qui permettre de développer une application web avec une gestion simplifié des différents services mis en place et de leur présentation sous forme de service REST.
+
+
 
 \subsection{Outils}
-Pour ce projet nous utiliserons différant outils.
+Pour ce projet nous utiliserons différant outils qui vont simplifier le développement.
 
 \subsubsection{Maven}
-\textit{Maven} va être utiles pour la séparation du programme en module, la gestion des dépendance et les build.
+\textit{Maven}\footnote{\url{http://maven.apache.org/}} est un outil de gestion et d'automatisation de production des projets Java. Il va être utiles pour la séparation du programme en module, la gestion des dépendance et les build.
 
 \subsubsection{MongoDB}
+\textit{MongoDB}\footnote{\url{https://www.mongodb.com/what-is-mongodb}} est un système de gestion de base de données orientée documents, il est simple d'utilisation. Il va être utiliser pour sauvegarder les messages des utilisateur afin de leur retourner leur historique (cf. \ref{recup_histo}).
 
 \subsubsection{GitHub}
-\textit{GitHub} va être utiliser pour gérée les versions du projet. Cela va aussi permettre le partage des sources sous licence MIT affin de récupérer le retour des utilisateurs et de leur amélioration.
+\textit{GitHub}\footnote{\url{https://github.com/}} est un service de gestion de développement. Il va être utiliser pour gérée les versions du projet. Cela va aussi permettre le partage des sources sous licence MIT affin de récupérer le retour des utilisateurs et de leur amélioration.
 
 \subsubsection{Travis-ci}
-\textit{Travis-ci} est un outil d'intégration continue. Il va permettre d'effectuer les build et les tests sous différent environnement UNIX. Il permet aussi de déployer les build.\\
+\textit{Travis-ci}\footnote{\url{https://travis-ci.org/}} est un outil d'intégration continue, qui permettre d'effectuer les build et les tests sous différent environnement UNIX. Il permet aussi de déployer les build.\\
 Il est aussi possible d'utiliser \textit{AppVeyor} pour un environnement Windows 
 
 
