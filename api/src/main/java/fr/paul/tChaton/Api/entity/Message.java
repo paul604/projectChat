@@ -1,4 +1,4 @@
-package fr.paul.tChaton.domain.entity;
+package fr.paul.tChaton.Api.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,28 +9,27 @@ import java.util.List;
  * @version 1.0.0
  */
 public class Message {
-    private static final String DEFAULT_MESSAGE = "Bonjour, que puis je faire pour vous !";
+    private static final String DEFAULT_MESSAGE = IConstant.DEFAULT_MESSAGE;
+
+    List<Message> history = new ArrayList<>();
 
     public Message() {
 
     }
     private String message = DEFAULT_MESSAGE;
-    public Message(Exception exception) {
-        super();
-        this.message ="Bonjour, je ne comprends pas votre demande, que souhaitez vous ?";
+
+    public Message(String message) {
+        this.message = message;
     }
 
+    public Message(Exception exception) {
 
+    }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    List<Message> history = new ArrayList<Message>();
 
     public List<Message> getHistory() {
         return history;
@@ -40,9 +39,7 @@ public class Message {
         this.history = history;
     }
 
-
-
     public boolean isEmpty() {
-        return false;
+        return false; //TODO
     }
 }

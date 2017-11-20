@@ -3,7 +3,7 @@ package fr.paul.tChaton.application.api;
 import com.google.gson.GsonBuilder;
 import fr.paul.tChaton.application.enf.BuilderStatus;
 import fr.paul.tChaton.application.enf.Status;
-import fr.paul.tChaton.domain.entity.Message;
+import fr.paul.tChaton.Api.entity.Message;
 import fr.paul.tChaton.marketing.service.conversation.Chat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,15 +32,15 @@ public class Conversation {
     }
 
     private String mkResponse(String message, Status checkIfWellFormed) {
-        Message messageToService = mkMessage(message,checkIfWellFormed) ;
+//        Message messageToService = mkMessage(message,checkIfWellFormed) ;
         GsonBuilder builder = new GsonBuilder();
-        String res = builder.create().toJson(chat.serviceConversation(messageToService));
+        String res = builder.create().toJson(chat.serviceConversation(message));
         return res;
     }
 
-    private Message mkMessage(String message, Status checkIfWellFormed) {
-        return null;
-    }
+//    private Message mkMessage(String message, Status checkIfWellFormed) {
+//        return null;
+//    }
 
     private Status checkIfWellFormed(String message) {
         LOGGER.info("message ==> " + message);

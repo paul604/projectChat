@@ -1,4 +1,4 @@
-package fr.paul.tChaton.domain.entity;
+package fr.paul.tChaton.Api.entity;
 
 /**
  * @author Paul
