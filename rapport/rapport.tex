@@ -104,6 +104,7 @@
 \begin{document}
 
 \maketitle%page titre
+\clearpage
 \tableofcontents
 
 \listoffigures
@@ -206,16 +207,33 @@ L'or de sa connections l'utilisateur peu récupérer son historique de conversat
 Si l'utilisateur na pas d'historique une liste vide luis est retourner.
 
 
-\subsection{Plateforme / Langage}
-Comme dit précédemment le programme sera développer pour la plateforme java et développer en java et plus précisément dans la version 8. Cela permet de faciliter le déploiement du programme.
-\\
+% \subsection{Plateforme / Langage}
 
-Nous allons aussi utiliser \textit{Spring Boot} qui est un framework qui permettre de développer une application web avec une gestion simplifié des différents services mis en place et de leur présentation sous forme de service REST.
+\subsection{Java}
+Comme dit précédemment le programme sera développer pour la plateforme java et développer en java et plus précisément dans la version 8. Cela permet de faciliter le déploiement du programme.
+
+\subsection{Librairie}
+
+\subsubsection{Slf4j}
+
+\subsubsection{Spring Boot}
+Nous allons aussi utiliser \textit{Spring Boot}\footnote{\url{http://projects.spring.io/spring-boot}} qui est un framework qui permettre de développer une application web avec une gestion simplifié des différents services mis en place et de leur présentation sous forme de service REST.
+
+\subsubsection{Spring Boot Test}
+\textit{Spring Boot Test}\footnote{\url{https://spring.io/guides/gs/spring-boot/\#_add_unit_tests}}.
+
+\subsubsection{Junit}
+Pour les test plus générale, nous allons utiliser \textit{junit}\footnote{\url{http://junit.org/junit4/}} en version 4.12.
 
 
 
 \subsection{Outils}
 Pour ce projet nous utiliserons différant outils qui vont simplifier le développement.
+
+
+\subsubsection{IntelliJ IDEA}
+\textit{IntelliJ IDEA}\footnote{\url{https://www.jetbrains.com/idea/}} est l'IDE java qui est utiliser pour ce projet. Il va permettre de faciliter le développement grâce à ces différente options.
+
 
 \subsubsection{Maven}
 \textit{Maven}\footnote{\url{http://maven.apache.org/}} est un outil de gestion et d'automatisation de production des projets Java. Il va être utiles pour la séparation du programme en module, la gestion des dépendance et les build.
@@ -230,8 +248,9 @@ Pour ce projet nous utiliserons différant outils qui vont simplifier le dévelo
 \textit{Travis-ci}\footnote{\url{https://travis-ci.org/}} est un outil d'intégration continue, qui permettre d'effectuer les build et les tests sous différent environnement UNIX. Il permet aussi de déployer les build.\\
 Il est aussi possible d'utiliser \textit{AppVeyor} pour un environnement Windows.
 
-\subsubsection{codecov}
+\subsubsection{Codecov}
 \textit{codecov}\footnote{\url{https://codecov.io/gh}}
+
 
 
 
