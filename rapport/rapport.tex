@@ -183,7 +183,7 @@ Ici chaque couleur correspond à un module.
     \item [Application] contient la \textbf{présentation} du fait de l'utilisation du framework \textit{Spring} qui permet une mise en place simple d'une api REST et donc de l'interface du back end. Sont rôle est de récupérer les requête arrivant à l'interface, de les envoyer au bon service et de répondre.
     \item [Domaine] correspond au \textit{services} de l'application. Contient aussi les interface, pressant  dans l'\textbf{API} et implémenté dans l'\textbf{infrastructure}, utile à ces services.
     \item [Infrastructure] correspond à l'implémentation des différentes \textbf{\textit{interfaces}} et \textbf{\textit{classe abstraites}} qui sont les factory. Il gère le stockage persistant des données.
-    \item [API] contient les \textbf{\textit{interface}} des classe communes aux modules. Cela permet notamment au \textbf{domaine} d'utiliser une classe et de laisser l'implémentation à l'\textbf{Infrastructure}.
+    \item [API] contient les \textbf{\textit{classe}} communes aux modules. Cela permet notamment au \textbf{domaine} d'utiliser une classe et de laisser l'implémentation à l'\textbf{Infrastructure}.
 \end{description}
 
 \section{Implémentation}
@@ -212,15 +212,17 @@ Si l'utilisateur na pas d'historique une liste vide luis est retourner.
 \subsection{Java}
 Comme dit précédemment le programme sera développer pour la plateforme java et développer en java et plus précisément dans la version 8. Cela permet de faciliter le déploiement du programme.
 
+
+
 \subsection{Librairie}
 
 \subsubsection{Slf4j}
 
-\subsubsection{Spring Boot}
-Nous allons aussi utiliser \textit{Spring Boot}\footnote{\url{http://projects.spring.io/spring-boot}} qui est un framework qui permettre de développer une application web avec une gestion simplifié des différents services mis en place et de leur présentation sous forme de service REST.
+\subsubsection{Spring Boot} \label{SpringBoot}
+Nous allons aussi utiliser \textit{Spring Boot}\footnote{\url{http://projects.spring.io/spring-boot}} en version 1.5.8 qui est un framework qui permettre de développer une application web avec une gestion simplifié des différents services mis en place et de leur présentation sous forme de service REST.
 
 \subsubsection{Spring Boot Test}
-\textit{Spring Boot Test}\footnote{\url{https://spring.io/guides/gs/spring-boot/\#_add_unit_tests}}.
+\textit{Spring Boot Test}\footnote{\url{https://spring.io/guides/gs/spring-boot/\#_add_unit_tests}} est utiliser pour réaliser les tests de l'api REST. Nous l'utiliserons dans la même version que Spring Boot (cf. \ref{SpringBoot}).
 
 \subsubsection{Junit}
 Pour les test plus générale, nous allons utiliser \textit{junit}\footnote{\url{http://junit.org/junit4/}} en version 4.12.
