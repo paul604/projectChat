@@ -216,13 +216,13 @@ Si l'utilisateur na pas d'historique une liste vide luis est retourner.
 % \subsection{Plateforme / Langage}
 
 \subsection{Java}
-Comme dit précédemment le programme sera développer pour la plateforme java et développer en java et plus précisément dans la version 8. Cela permet de faciliter le déploiement du programme.
+Comme dit précédemment le programme sera développer pour la plateforme java et développer en java et plus précisément dans la version 8. Cela permet de faciliter le déploiement du programme vue que java est multi-plateforme.
 
 
 \subsection{Librairie}
 
 \subsubsection{Slf4j}
-\textit{Slf4j}\footnote{\url{http://www.slf4j.org}} est une api de logging. Elle permet de loger les informations souhaiter à l'endroit souhaiter. Par exemple dans un fichier.
+\textit{Slf4j}\footnote{\url{http://www.slf4j.org}} est une api de logging. Elle permet de loger les informations souhaiter à l'endroit souhaiter. Par exemple dans un fichier. Cela va permettre de pouvoir avoir les log même après l'arrêt du programme car les message ne sont plus directement dans le terminale.
 
 \subsubsection{Spring Boot} \label{SpringBoot}
 Nous allons aussi utiliser \textit{Spring Boot}\footnote{\url{http://projects.spring.io/spring-boot}} en version 1.5.8 qui est un framework permettant de développer une application web avec une gestion simplifié des différents services mis en place et de leur présentation sous forme de service REST.
@@ -233,6 +233,8 @@ Nous allons aussi utiliser \textit{Spring Boot}\footnote{\url{http://projects.sp
 \subsubsection{Junit}
 Pour les test plus générale, nous allons utiliser \textit{junit}\footnote{\url{http://junit.org/junit4/}} en version 4.12, qui est un framework de test unitaire.
 
+\subsubsection{Gson}
+\textit{Gson}\footnote{\url{https://github.com/google/gson}} est une librairie qui permet de convertir des objet Java en JSON, et inversement. Il nous sera utile pour comprendre les information reçu et de pouvoir en renvoyer.
 
 
 \subsection{Outils}
@@ -257,11 +259,11 @@ Pour ce projet nous utiliserons différant outils qui vont simplifier le dévelo
 Il est aussi possible d'utiliser \textit{AppVeyor} pour un environnement Windows.
 
 \subsubsection{Codecov}
-\textit{Codecov}\footnote{\url{https://codecov.io/gh}} est un outil permettant de regrouper, fusionner, archiver et comparer des rapports de couverture de code. Cela permet de trouver notamment les code mort.
+\textit{Codecov}\footnote{\url{https://codecov.io/gh}} est un outil permettant de regrouper, fusionner, archiver et comparer des rapports de couverture de code. Cela permet, notamment, de trouver les code mort.
 
 
 \section{Conclusion}
-Ce projet a donc pour but de développer le back end et l'interface d'un marketing conversationnel. Pour des raison de temps seul l'échange de messages et l'historique sera développer. Le projet sera réaliser en java. Différent outil serons utiliser pour faciliter le développement.
+Ce projet a donc pour but de développer le back end et l'interface d'un marketing conversationnel. Pour des raison de temps seul l'échange de messages et l'historique sera développer. Le projet sera réaliser en java. Le développement ce fera autour des tests unitaire afin de valider le fonctionnement des différée méthodes. Les différente tâche doive être séparer pour avoir un couplage lâche. Différent outil serons utiliser pour faciliter le développement.
 
 \begin{figure}[h]
     \centering
