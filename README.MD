@@ -1,7 +1,7 @@
 ---
 layout: post
 title: tChaton
-permalink: README.html
+permalink: index.html
 ---
 
 # tChaton
