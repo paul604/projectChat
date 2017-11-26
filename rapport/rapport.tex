@@ -119,7 +119,7 @@
 \clearpage
 
 \section{Projet}
-Dans le cadre du module de technologies web côté serveur, il a été demander de créer une partie du back end d’un marketing conversationnel.
+Dans le cadre du module de technologies web côté serveur, il a été demandé de créer une partie du back end d’un marketing conversationnel.
 \\
 
 Pour cela il va falloir développer différent services pour pouvoirs mettre en place ce système.
@@ -128,7 +128,7 @@ Pour cela il va falloir développer différent services pour pouvoirs mettre en 
 
 \section{Contexte du projet}
 \subsection{Objectifs}
-L'objectif est donc de développer une partie du Back End d’un marketing conversationnel, en exposant les service avec une api REST.
+L'objectif est donc de développer une partie du Back End d’un marketing conversationnel, en exposant les services avec une api REST.
 \\
 
 \begin{figure}[h]
@@ -137,10 +137,10 @@ L'objectif est donc de développer une partie du Back End d’un marketing conve
     \caption{Workflow classique d'un utilisateur}
 \end{figure}
 
-La partie à développer est l'envoi des messages et les sauvegardes des données. Ces sauvegardes sont utilisé pour conserver les messages, qui seront daté, afin d'afficher l'historique à l'utilisateur et pouvoir effectuer des statistiques anonyme sur toute les conversation.
+La partie à développer est l'envoi des messages et les sauvegardes des données. Ces sauvegardes sont utilisées pour conserver les messages, qui seront datés, afin d'afficher l'historique à l'utilisateur et pouvoir effectuer des statistiques anonyme sur toute les conversations.
 \\
 
-Le projet doit être séparer en sous module, cela permettra de manipuler, modifier et diffuser plus facilement.
+Le projet doit être séparé en sous module, cela permettra de manipuler, modifier et diffuser plus facilement.
 
 
 \subsection{Contraintes}
@@ -150,7 +150,7 @@ Le projet doit être séparer en sous module, cela permettra de manipuler, modif
     \begin{itemize}
         \item Il sera programmé en Java pour des raisons de connaissance.
     \end{itemize}
-    \item Le rapport est à rendre le 23 novembre 2017 à 17h50.
+    \item Le rapport est à rendre le 27 novembre 2017 à 08h00.
     \item Le projet est à rendre le 5 décembre 2017 à 12h20.
     \item Le système doit sauvegarder les messages pour réaliser des statistiques et pour l'historique des utilisateurs.
     \item Le système doit être testé et testable sur le poste du développeur.
@@ -168,11 +168,11 @@ Le projet doit être séparer en sous module, cela permettra de manipuler, modif
     \caption{Diagramme de la séparation du Back / Front End}
     \label{fig:diag_back_front}
 \end{figure}
-Comme dit précédemment, seule le back end et son interface sera développer (partie en rouge de la figure \ref{fig:diag_back_front}).
+Comme dit précédemment, seule le back end et son interface sera développé (partie en rouge de la figure \ref{fig:diag_back_front}).
 
 
 \subsection{Vue logique du Back End}
-Le back end sera diviser en plusieurs modules permettent ainsi de diviser les tâches, de réaliser un couplage lâche et de faciliter le maintien du système.
+Le back end sera divisé en plusieurs modules permettent ainsi de diviser les tâches, de réaliser un couplage lâche et de faciliter le maintien du système.
 
 Cette représentation repose sur le \textit{domain-driven design}\footnote{\textit{domain-driven design}(DDD): en français \textit{conception pilotée par le domaine} est une approche de la conception de logiciel. Plus d'information: \url{https://en.wikipedia.org/wiki/Domain-driven_design}}. Le but du DDD est de former le code autour de notion métiers.
 
@@ -187,7 +187,7 @@ Ici chaque couleur correspond à un module.
 
 \begin{description}
     \item [Application] contient la \textbf{présentation} du fait de l'utilisation du framework \textit{Spring} qui permet une mise en place simple d'une api REST et donc de l'interface du back end. Sont rôle est de récupérer les requête arrivant à l'interface, de les envoyer au bon service et de répondre.
-    \item [Domaine] correspond au \textit{services} de l'application. Contient aussi les interface, pressant  dans l'\textbf{API} et implémenté dans l'\textbf{infrastructure}, utile à ces services.
+    \item [Domaine] correspond au \textit{services} de l'application. Contient aussi les \textbf{\textit{interfaces}}, pressant  dans l'\textbf{API} et implémenté dans l'\textbf{infrastructure}, utile à ces services.
     \item [Infrastructure] correspond à l'implémentation des différentes \textbf{\textit{interfaces}} et \textbf{\textit{classe abstraites}} qui sont les factory. Il gère le stockage persistant des données.
     \item [API] contient les \textbf{\textit{classe}} communes aux modules. Cela permet notamment au \textbf{domaine} d'utiliser une classe et de laisser l'implémentation à l'\textbf{Infrastructure}.
 \end{description}
@@ -198,43 +198,43 @@ Ici chaque couleur correspond à un module.
 Le back end va donc proposer différant services.
 
 \subsubsection{L'envoi de messages}
-Un service proposera au client d'envoyer un message ver le serveur.
-Ce message sera	transmis au personnes concerner. Il sera aussi sauvegarder. Cette sauvegarde est utile pour l'historique de conversation de l'utilisateur (cf. \ref{recup_histo}) et pour réaliser des statistique sur l'ensemble des demande.
+Un service proposera au client d'envoyer un message vers le serveur.
+Ce message sera transmis aux personnes concerner. Il sera aussi sauvegardé. Cette sauvegarde est utile pour l'historique de conversation de l'utilisateur (cf. \ref{recup_histo}) et pour réaliser des statistiques sur l'ensemble des demande.
 
 
 \subsubsection{L'envoi de réponse}
-Suite à l'envoi d'un message par un utilisateur, si il le peut, le serveur envoi un message sinon la personne concerner répond à la demande.\\
+Suite à l'envoi d'un message par un utilisateur, s'il le peut, le serveur envoie un message sinon la personne concernée répond à la demande.\\
 Pour le moment le serveur répondra avec un message générique, pour cause d'un manque de temps et de moyen.
 
 
 \subsubsection{Récupérer l'historique} \label{recup_histo}
-L'or de sa connections l'utilisateur peu récupérer son historique de conversation afin de reprend le fil de sa conversation.
+L'or de sa connexion l'utilisateur peut récupérer son historique de conversation afin de reprend le fil de sa conversation.
 \\
-Si l'utilisateur na pas d'historique une liste vide luis est retourner.
+Si l'utilisateur n'a pas d'historique une liste vide lui est retourné.
 
 
 % \subsection{Plateforme / Langage}
 
 \subsection{Java}
-Comme dit précédemment le programme sera développer pour la plateforme java et développer en java et plus précisément dans la version 8. Cela permet de faciliter le déploiement du programme vue que java est multi-plateforme.
+Comme dit précédemment le programme sera développé pour la plateforme java et développer en java et plus précisément dans la version 8. Cela permet de faciliter le déploiement du programme vu que java est multi-plateforme.
 
 
 \subsection{Librairie}
 
 \subsubsection{Slf4j}
-\textit{Slf4j}\footnote{\url{http://www.slf4j.org}} est une api de logging. Elle permet de loger les informations souhaiter à l'endroit souhaiter. Par exemple dans un fichier. Cela va permettre de pouvoir avoir les log même après l'arrêt du programme car les message ne sont plus directement dans le terminale.
+\textit{Slf4j}\footnote{\url{http://www.slf4j.org}} est une api de logging. Elle permet de loger les informations souhaiter à l'endroit souhaiter. Par exemple dans un fichier. Cela va permettre de pouvoir avoir les logs même après l'arrêt du programme, car les messages ne sont plus directement dans le terminal.
 
 \subsubsection{Spring Boot} \label{SpringBoot}
-Nous allons aussi utiliser \textit{Spring Boot}\footnote{\url{http://projects.spring.io/spring-boot}} en version 1.5.8 qui est un framework permettant de développer une application web avec une gestion simplifié des différents services mis en place et de leur présentation sous forme de service REST.
+Nous allons aussi utiliser \textit{Spring Boot}\footnote{\url{http://projects.spring.io/spring-boot}} en version 1.5.8 qui est un framework permettant de développer une application web avec une gestion simplifiée des différents services mis en place et de leur présentation sous forme de service REST.
 
 \subsubsection{Spring Boot Test}
-\textit{Spring Boot Test}\footnote{\url{https://spring.io/guides/gs/spring-boot/\#_add_unit_tests}} est utiliser pour réaliser les tests de l'api REST. Nous l'utiliserons dans la même version que Spring Boot (cf. \ref{SpringBoot}).
+\textit{Spring Boot Test}\footnote{\url{https://spring.io/guides/gs/spring-boot/\#_add_unit_tests}} est utilisé pour réaliser les tests de l'api REST. Nous l'utiliserons dans la même version que Spring Boot (cf. \ref{SpringBoot}).
 
 \subsubsection{Junit}
-Pour les test plus générale, nous allons utiliser \textit{junit}\footnote{\url{http://junit.org/junit4/}} en version 4.12, qui est un framework de test unitaire.
+Pour les tests plus générales, nous allons utiliser \textit{junit}\footnote{\url{http://junit.org/junit4/}} en version 4.12, qui est un framework de test unitaire.
 
 \subsubsection{Gson}
-\textit{Gson}\footnote{\url{https://github.com/google/gson}} est une librairie qui permet de convertir des objet Java en JSON, et inversement. Il nous sera utile pour comprendre les information reçu et de pouvoir en renvoyer.
+\textit{Gson}\footnote{\url{https://github.com/google/gson}} est une librairie qui permet de convertir des objets Java en JSON et inversement. Il nous sera utile pour comprendre les informations reçu et de pouvoir en renvoyer.
 
 
 \subsection{Outils}
@@ -242,28 +242,28 @@ Pour ce projet nous utiliserons différant outils qui vont simplifier le dévelo
 
 
 \subsubsection{IntelliJ IDEA}
-\textit{IntelliJ IDEA}\footnote{\url{https://www.jetbrains.com/idea/}} est l'IDE java qui est utiliser pour ce projet. Il va permettre de faciliter le développement grâce à ces différente options.
+\textit{IntelliJ IDEA}\footnote{\url{https://www.jetbrains.com/idea/}} est l'IDE java qui est utilisé pour ce projet. Il va permettre de faciliter le développement grâce à ces différentes options.
 
 
 \subsubsection{Maven}
-\textit{Maven}\footnote{\url{http://maven.apache.org/}} est un outil de gestion et d'automatisation de production des projets Java. Il va être utiles pour la séparation du programme en module, la gestion des dépendance et les build.
+\textit{Maven}\footnote{\url{http://maven.apache.org/}} est un outil de gestion et d'automatisation de production des projets Java. Il va être utiles pour la séparation du programme en module, la gestion des dépendances et les build.
 
 \subsubsection{MongoDB}
-\textit{MongoDB}\footnote{\url{https://www.mongodb.com/what-is-mongodb}} est un système de gestion de base de données orientée documents, il est simple d'utilisation. Il va être utiliser pour sauvegarder les messages des utilisateur afin de leur retourner leur historique (cf. \ref{recup_histo}).
+\textit{MongoDB}\footnote{\url{https://www.mongodb.com/what-is-mongodb}} est un système de gestion de base de données orientée documents, il est simple d'utilisation. Il va être utilisé pour sauvegarder les messages des utilisateurs afin de leur retourner leur historique(cf. \ref{recup_histo}).
 
 \subsubsection{GitHub}
-\textit{GitHub}\footnote{\url{https://github.com/}} est un service de gestion de développement. Il va être utiliser pour gérée les versions du projet. Cela va aussi permettre le partage des sources sous licence MIT affin de récupérer le retour des utilisateurs et de leur amélioration.
+\textit{GitHub}\footnote{\url{https://github.com/}} est un service de gestion de développement. Il va être utilisé pour gérer les versions du projet. Cela va aussi permettre le partage des sources sous licence MIT afin de récupérer le retour des utilisateurs et de leur amélioration.
 
 \subsubsection{Travis-ci}
-\textit{Travis-ci}\footnote{\url{https://travis-ci.org/}} est un outil d'intégration continue, qui permettre d'effectuer les build et les tests sous différent environnement UNIX. Il permet aussi de déployer les build.\\
+\textit{Travis-ci}\footnote{\url{https://travis-ci.org/}} est un outil d'intégration continue, qui permet d'effectuer les build et les tests sous différent environnement UNIX. Il permet aussi de déployer les build.\\
 Il est aussi possible d'utiliser \textit{AppVeyor} pour un environnement Windows.
 
 \subsubsection{Codecov}
-\textit{Codecov}\footnote{\url{https://codecov.io/gh}} est un outil permettant de regrouper, fusionner, archiver et comparer des rapports de couverture de code. Cela permet, notamment, de trouver les code mort.
+\textit{Codecov}\footnote{\url{https://codecov.io/gh}} est un outil permettant de regrouper, fusionner, archiver et comparer des rapports de couverture de code. Cela permet, notamment, de trouver les codes morts.
 
 
 \section{Conclusion}
-Ce projet a donc pour but de développer le back end et l'interface d'un marketing conversationnel. Pour des raison de temps seul l'échange de messages et l'historique sera développer. Le projet sera réaliser en java. Le développement ce fera autour des tests afin de valider le fonctionnement des différée méthodes. Les différente tâche doive être séparer pour avoir un couplage lâche. Différent outil serons utiliser pour faciliter le développement.
+Ce projet a donc pour but de développer le back end et l'interface d'un marketing conversationnel. Pour des raisons de temps seuls l'échange de messages et l'historique sera développé. Le projet sera réalisé en java. Le développement se fera autour des tests afin de valider le fonctionnement des différentes méthodes. Les différentes tâches doivent être séparées pour avoir un couplage lâche. Différent outil serons utilisés pour faciliter le développement.
 
 \begin{figure}[h]
     \centering
