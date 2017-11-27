@@ -13,10 +13,10 @@ os:
   - linux
 
 script:
-  - mvn clean install
+  - mvn test
   - mvn cobertura:cobertura
 
-after_success:
+before_cache:
   - bash <(curl -s https://codecov.io/bash)
 
 branches:
