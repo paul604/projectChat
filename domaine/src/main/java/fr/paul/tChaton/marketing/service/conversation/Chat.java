@@ -1,9 +1,9 @@
 package fr.paul.tChaton.marketing.service.conversation;
 
-import fr.paul.tChaton.Api.entity.IConstant;
-import fr.paul.tChaton.Api.factory.IFactory;
-import fr.paul.tChaton.Api.repo.IRepo;
-import fr.paul.tChaton.Api.entity.Message;
+import fr.paul.tChaton.api.entity.IConstant;
+import fr.paul.tChaton.api.factory.IFactory;
+import fr.paul.tChaton.api.repo.IRepo;
+import fr.paul.tChaton.api.entity.Message;
 
 import javax.annotation.Resource;
 

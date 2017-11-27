@@ -3,7 +3,6 @@ package fr.paul.tChaton.application.api;
 import com.google.gson.GsonBuilder;
 import fr.paul.tChaton.application.enf.BuilderStatus;
 import fr.paul.tChaton.application.enf.Status;
-import fr.paul.tChaton.Api.entity.Message;
 import fr.paul.tChaton.marketing.service.conversation.Chat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

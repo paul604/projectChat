@@ -1,7 +1,7 @@
 package fr.paul.tChaton.marketing.service.conversation;
 
-import fr.paul.tChaton.Api.entity.IConstant;
-import fr.paul.tChaton.Api.entity.Message;
+import fr.paul.tChaton.api.entity.IConstant;
+import fr.paul.tChaton.api.entity.Message;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -1,4 +1,4 @@
-package fr.paul.tChaton.Api.repo;
+package fr.paul.tChaton.api.repo;
 
 /**
  * @author Paul

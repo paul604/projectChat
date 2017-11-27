@@ -1,8 +1,8 @@
 package fr.paul.tChaton.api;
 
 import com.google.gson.GsonBuilder;
-import fr.paul.tChaton.Api.entity.IConstant;
-import fr.paul.tChaton.Api.entity.Message;
+import fr.paul.tChaton.api.entity.IConstant;
+import fr.paul.tChaton.api.entity.Message;
 import fr.paul.tChaton.application.api.Conversation;
 import org.junit.Test;
 import org.junit.runner.RunWith;

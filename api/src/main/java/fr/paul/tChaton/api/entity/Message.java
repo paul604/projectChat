@@ -1,4 +1,4 @@
-package fr.paul.tChaton.Api.entity;
+package fr.paul.tChaton.api.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,14 +9,17 @@ import java.util.List;
  * @version 1.0.0
  */
 public class Message {
-    private static final String DEFAULT_MESSAGE = IConstant.DEFAULT_MESSAGE;
+    private String message = IConstant.DEFAULT_MESSAGE;
 
     List<Message> history = new ArrayList<>();
+
+    //-----------------------------
+    //        Constructeur
+    //-----------------------------
 
     public Message() {
 
     }
-    private String message = DEFAULT_MESSAGE;
 
     public Message(String message) {
         this.message = message;
@@ -25,6 +28,10 @@ public class Message {
     public Message(Exception exception) {
 
     }
+
+    //-----------------------------
+    //          Get & Set
+    //-----------------------------
 
     public String getMessage() {
         return message;
