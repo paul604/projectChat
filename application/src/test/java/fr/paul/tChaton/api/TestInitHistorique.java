@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -59,8 +60,8 @@ public class TestInitHistorique {
     public void checkSizeHistoryAfterTwoMessage() throws Exception {
 
         List<Message> messageList = new ArrayList<>();
-        messageList.add(new Message("first"));
-        messageList.add(new Message("second"));
+        messageList.add(new Message("first", Calendar.getInstance()));
+        messageList.add(new Message("second", Calendar.getInstance()));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 

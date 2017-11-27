@@ -37,7 +37,7 @@ public class Chat {
     private Message treatmentMessage(String messageToService) {
         Message res =null;
         if(messageToService.contentEquals(IConstant.MESSAGE_HELLO)){
-            res = new Message(IConstant.MESSAGE_HELLO);
+            res = new Message(IConstant.MESSAGE_HELLO, null);
         }
 
         return res;
