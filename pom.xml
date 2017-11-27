@@ -176,6 +176,7 @@
                                 <format>html</format>
                                 <format>xml</format>
                             </formats>
+                            <aggregate>true</aggregate>
                             <check />
                         </configuration>
                     </plugin>
