@@ -5,6 +5,7 @@ sudo: false
 cache:
   directories:
     - $HOME/.m2
+    - /^.*\\target\\cobertura\\.*$/
 
 jdk:
   - oraclejdk8
