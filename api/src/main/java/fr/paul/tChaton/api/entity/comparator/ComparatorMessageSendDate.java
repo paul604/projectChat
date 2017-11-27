@@ -5,7 +5,9 @@ import fr.paul.tChaton.api.entity.Message;
 import java.util.Comparator;
 
 /**
- * Created by Paul on 27/11/17.
+ * @author Paul
+ * @since 1.0.0
+ * @version 1.0.0
  */
 public class ComparatorMessageSendDate implements Comparator<Message> {
 

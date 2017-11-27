@@ -10,7 +10,9 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * Created by Paul on 27/11/17.
+ * @author Paul
+ * @since 1.0.0
+ * @version 1.0.0
  */
 public class MessageTest {
 
