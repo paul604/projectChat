@@ -6,7 +6,3 @@ coverage:
   precision: 2
   round: down
   range: "50...85"
-
-fixes:
-  - "*/src/*::src/"
-  - "*/target/*::target/"
