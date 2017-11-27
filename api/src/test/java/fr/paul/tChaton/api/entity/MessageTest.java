@@ -1,0 +1,66 @@
+package fr.paul.tChaton.api.entity;
+
+import fr.paul.tChaton.api.entity.comparator.ComparatorMessageSendDate;
+import org.junit.Test;
+
+import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+/**
+ * Created by Paul on 27/11/17.
+ */
+public class MessageTest {
+
+    @Test
+    public void createEmptyMessage() throws Exception {
+        assertEquals("empty Message", IConstant.DEFAULT_MESSAGE, new Message().getMessage());
+    }
+
+    @Test
+    public void sendDate() throws Exception {
+        assertEquals("test sendDate",
+                Calendar.getInstance().getTime().toString(),
+                new Message("msg test", null).getSendDate().getTime().toString());
+    }
+
+    @Test
+    public void compareSendDateAscending() throws Exception {
+        Message message1 = new Message("1", null);
+        Message message2 = new Message("2", null);
+
+        List<Message> messagesOrderOk = new LinkedList<>();
+        messagesOrderOk.add(message1);
+        messagesOrderOk.add(message2);
+
+        List<Message> messages = new LinkedList<>();
+        messages.add(message2);
+        messages.add(message1);
+
+        messages.sort(new ComparatorMessageSendDate());
+
+        assertArrayEquals("comparer ceation Date ascending", messagesOrderOk.toArray(new Message[0]), messages.toArray(new Message[0]));
+
+    }
+
+    @Test
+    public void compareSendDateDescending() throws Exception {
+        Message message1 = new Message("1", null);
+        Message message2 = new Message("2", null);
+
+        LinkedList<Message> messagesOrderOk = new LinkedList<>();
+        messagesOrderOk.add(message2);
+        messagesOrderOk.add(message1);
+
+        LinkedList<Message> messages = new LinkedList<>();
+        messages.add(message1);
+        messages.add(message2);
+
+        messages.sort(new ComparatorMessageSendDate().reversed());
+
+        assertArrayEquals("comparer ceation Date ascending", messagesOrderOk.toArray(new Message[0]), messages.toArray(new Message[0]));
+
+    }
+}
