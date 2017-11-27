@@ -50,11 +50,11 @@ public class MessageTest {
         Message message1 = new Message("1", null);
         Message message2 = new Message("2", null);
 
-        LinkedList<Message> messagesOrderOk = new LinkedList<>();
+        List<Message> messagesOrderOk = new LinkedList<>();
         messagesOrderOk.add(message2);
         messagesOrderOk.add(message1);
 
-        LinkedList<Message> messages = new LinkedList<>();
+        List<Message> messages = new LinkedList<>();
         messages.add(message1);
         messages.add(message2);
 
