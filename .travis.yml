@@ -12,10 +12,11 @@ jdk:
 os:
   - linux
 
-script: "mvn clean install"
-
-after_success:
+script:
+  - mvn clean install
   - mvn cobertura:cobertura
+
+after_script:
   - bash <(curl -s https://codecov.io/bash)
 
 branches:
