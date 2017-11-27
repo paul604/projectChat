@@ -8,4 +8,5 @@ coverage:
   range: "50...85"
 
 fixes:
-  - "*/src*::src/"
+  - "*/src/*::src/"
+  - "*/target/*::target/"
