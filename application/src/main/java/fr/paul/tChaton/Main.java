@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 1.0.0
  * @version 1.0.0
  */
-@SpringBootApplication(scanBasePackages = { "fr.iut.api" })
+@SpringBootApplication(scanBasePackages = { "fr.paul.tChaton.application.api" })
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
