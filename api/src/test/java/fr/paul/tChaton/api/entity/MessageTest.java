@@ -31,6 +31,7 @@ public class MessageTest {
     @Test
     public void compareSendDateAscending() throws Exception {
         Message message1 = new Message("1", null);
+        Thread.sleep(10);//for different time
         Message message2 = new Message("2", null);
 
         List<Message> messagesOrderOk = new LinkedList<>();
