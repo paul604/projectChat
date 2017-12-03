@@ -1,8 +1,6 @@
 package fr.paul.tChaton.api.entity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * @author Paul
@@ -12,8 +10,7 @@ import java.util.List;
 public class Message {
     private String message = IConstant.DEFAULT_MESSAGE;
 
-    List<Message> history = new ArrayList<>();
-
+    private User from;
     private Calendar creationDate;
     private Calendar sendDate;
 
@@ -31,10 +28,6 @@ public class Message {
         this.sendDate = Calendar.getInstance();
     }
 
-    public Message(Exception exception) {
-
-    }
-
     //-----------------------------
     //          Get & Set
     //-----------------------------
@@ -49,18 +42,6 @@ public class Message {
 
     public Calendar getSendDate() {
         return sendDate;
-    }
-
-    public List<Message> getHistory() {
-        return history;
-    }
-
-    public void setHistory(List<Message> history) {
-        this.history = history;
-    }
-
-    public boolean isEmpty() {
-        return false; //TODO
     }
 
     //-----------------------------

@@ -13,18 +13,21 @@ import javax.annotation.Resource;
  * @version 1.0.0
  */
 public class Chat {
+
     @Resource
     IFactory factoy;
+
     @Resource
     IRepo repository;
-    private Message beginConversation() {
 
+    private Message beginConversation() {
         return new Message();
     }
-    public Message serviceConversation(Exception exception) {
-        return new Message(exception);
+
+    public Message serviceConversation(Message messageToService) {
+        return serviceConversation(messageToService.getMessage());
     }
-    public Message serviceConversation(Message messageToService) {return serviceConversation(messageToService.getMessage());}
+
     public Message serviceConversation(String messageToService) {
         Message res = null;
         if(messageToService == null || messageToService.isEmpty()){
@@ -34,12 +37,12 @@ public class Chat {
         }
         return res;
     }
+
     private Message treatmentMessage(String messageToService) {
         Message res =null;
         if(messageToService.contentEquals(IConstant.MESSAGE_HELLO)){
             res = new Message(IConstant.MESSAGE_HELLO, null);
         }
-
         return res;
     }
 

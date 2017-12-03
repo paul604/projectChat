@@ -8,4 +8,6 @@ package fr.paul.tChaton.api.entity;
 public interface IConstant {
     static final String DEFAULT_MESSAGE = "Bonjour, que puis-je faire pour vous ?";
     static final String MESSAGE_HELLO = "Hello";
+
+    public final String DEFAULT_USER_ID="U00001" ;
 }
