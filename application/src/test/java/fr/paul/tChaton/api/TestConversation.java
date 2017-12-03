@@ -29,6 +29,14 @@ public class TestConversation {
     @Test
     public void startAConversationWithNoMessage() throws Exception {
 
+        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("id", IConstant.DEFAULT_USER_ID))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(IConstant.DEFAULT_MESSAGE));
+
+    }
+
+    @Test
+    public void conversationWithNoUserId() throws Exception {
+
         mvc.perform(MockMvcRequestBuilders.get("/conversation"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(IConstant.DEFAULT_MESSAGE));
 
@@ -37,7 +45,7 @@ public class TestConversation {
     @Test
     public void startAConversationWithHello() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("message",IConstant.MESSAGE_HELLO))
+        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("message",IConstant.MESSAGE_HELLO).param("id", IConstant.DEFAULT_USER_ID))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(IConstant.MESSAGE_HELLO));
 
     }

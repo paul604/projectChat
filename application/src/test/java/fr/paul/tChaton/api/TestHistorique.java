@@ -3,7 +3,7 @@ package fr.paul.tChaton.api;
 import com.google.gson.GsonBuilder;
 import fr.paul.tChaton.api.entity.IConstant;
 import fr.paul.tChaton.api.entity.Message;
-import fr.paul.tChaton.application.api.ConversationMapping;
+import fr.paul.tChaton.application.api.HistoryMapping;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import java.util.List;
  * @version 1.0.0
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = ConversationMapping.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = HistoryMapping.class)
 @AutoConfigureMockMvc
 public class TestHistorique {
 
