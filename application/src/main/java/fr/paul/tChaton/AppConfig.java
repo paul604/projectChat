@@ -1,6 +1,7 @@
 package fr.paul.tChaton;
 
 import fr.paul.tChaton.api.factory.IFactory;
+import fr.paul.tChaton.api.repo.IDb;
 import fr.paul.tChaton.infra.factory.DbFactory;
 import fr.paul.tChaton.marketing.service.conversation.Chat;
 import fr.paul.tChaton.marketing.service.conversation.History;
@@ -29,4 +30,10 @@ public class AppConfig {
 	public History getHyHistory(){
         return new History();
     }
+
+    @Bean("db")
+    public IDb getIDb(){
+        return new DbFactory().createDb();
+    }
+
 }

@@ -4,6 +4,7 @@ import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.factory.IFactory;
 import fr.paul.tChaton.api.repo.IDb;
 import fr.paul.tChaton.api.entity.Message;
+import fr.paul.tChaton.infra.factory.DbFactory;
 
 import javax.annotation.Resource;
 
@@ -14,10 +15,8 @@ import javax.annotation.Resource;
  */
 public class Chat {
 
-    IFactory factory;
-
     @Resource
-    IDb repository;
+    private IDb db;
 
     private Message beginConversation() {
         return new Message();

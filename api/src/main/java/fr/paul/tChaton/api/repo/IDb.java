@@ -2,8 +2,6 @@ package fr.paul.tChaton.api.repo;
 
 import fr.paul.tChaton.api.entity.Message;
 import fr.paul.tChaton.api.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Paul
@@ -11,8 +9,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0.0
  */
 public interface IDb {
-
-    Logger LOGGER = LoggerFactory.getLogger(IDb.class);
 
     //USER
     boolean setDbUser();
@@ -22,6 +18,8 @@ public interface IDb {
     boolean upUser(User user);
 
     boolean delUser(User user);
+
+    User getUserWithId(String id);
 
     //MESSAGE
     boolean setDbMessage();

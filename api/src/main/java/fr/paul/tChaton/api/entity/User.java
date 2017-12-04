@@ -7,13 +7,21 @@ package fr.paul.tChaton.api.entity;
  */
 public class User {
 
-    private int id;
+    private String id;
     private String nom;
 
-    public User(int id, String nom) {
+    public User(String id, String nom) {
         this.id = id;
         this.nom = nom;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
 
+        User user = (User) o;
+
+        return id.equals(user.id);
+    }
 }

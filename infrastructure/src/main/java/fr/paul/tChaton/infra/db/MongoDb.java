@@ -2,6 +2,8 @@ package fr.paul.tChaton.infra.db;
 
 import com.google.gson.GsonBuilder;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import fr.paul.tChaton.api.entity.AConstant;
@@ -9,8 +11,16 @@ import fr.paul.tChaton.api.entity.Message;
 import fr.paul.tChaton.api.entity.User;
 import fr.paul.tChaton.api.repo.IDb;
 import org.bson.BsonDocument;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+
+import static com.mongodb.client.model.Filters.eq;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 /**
  * @author Paul
@@ -19,14 +29,21 @@ import java.util.Arrays;
  */
 public class MongoDb implements IDb {
 
+    Logger LOGGER = LoggerFactory.getLogger(MongoDb.class);
+
     private MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<User> userCollection;
     private MongoCollection<Message> messageCollection;
 
     public MongoDb() {
-
-        mongoClient = new MongoClient(AConstant.URL_DB, Integer.parseInt(AConstant.URL_DB));
+        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(),
+                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+        MongoClientOptions settings = MongoClientOptions.builder()
+                .codecRegistry(pojoCodecRegistry)
+                .build();
+        //TODO setup MongoClientOptions
+        mongoClient = new MongoClient(AConstant.URL_DB+":"+Integer.parseInt(AConstant.PORT_DB), settings);
         database = mongoClient.getDatabase(AConstant.NAME_DB);
 
         setDbUser();
@@ -77,11 +94,20 @@ public class MongoDb implements IDb {
         return ret;
     }
 
+    @Override
+    public User getUserWithId(String id) {
+        FindIterable<User> users = userCollection.find(eq("id", id));
+
+        return users!=null
+                ?users.first()
+                :null;
+    }
+
 
     //MESSAGE
     @Override
     public boolean setDbMessage() {
-        messageCollection = database.getCollection("User", Message.class);
+        messageCollection = database.getCollection("Message", Message.class);
         return messageCollection != null;
     }
 
@@ -113,5 +139,25 @@ public class MongoDb implements IDb {
             ret = false;
         }
         return ret;
+    }
+
+    //-----------------------------
+    //             Get
+    //-----------------------------
+
+    public MongoClient getMongoClient() {
+        return mongoClient;
+    }
+
+    public MongoDatabase getDatabase() {
+        return database;
+    }
+
+    public MongoCollection<User> getUserCollection() {
+        return userCollection;
+    }
+
+    public MongoCollection<Message> getMessageCollection() {
+        return messageCollection;
     }
 }

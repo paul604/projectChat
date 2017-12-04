@@ -10,6 +10,7 @@ public abstract class AConstant {
     public static final String DEFAULT_MESSAGE = "Bonjour, que puis-je faire pour vous ?";
     public static final String MESSAGE_HELLO = "Hello";
     public static final String DEFAULT_USER_ID="U00001" ;
+    public static final String DEFAULT_USER_NAME="NAME_USER" ;
 
     public static String TYPE_DB = "";
     public static String URL_DB = "";
