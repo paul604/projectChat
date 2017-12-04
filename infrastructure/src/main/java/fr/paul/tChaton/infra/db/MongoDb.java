@@ -8,12 +8,7 @@ import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.entity.Message;
 import fr.paul.tChaton.api.entity.User;
 import fr.paul.tChaton.api.repo.IDb;
-import org.bson.BSON;
-import org.bson.BSONObject;
 import org.bson.BsonDocument;
-import org.bson.codecs.BsonObjectIdCodec;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
