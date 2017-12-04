@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
+
 /**
  * @author Paul
  * @since 1.0.0
@@ -16,7 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableAutoConfiguration
 public class HistoryMapping {
 
-    private History history = new History();
+    @Resource
+    private History history;
 
     @ResponseBody
     @GetMapping("history")
