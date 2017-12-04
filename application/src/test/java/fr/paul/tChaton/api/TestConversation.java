@@ -1,6 +1,6 @@
 package fr.paul.tChaton.api;
 
-import fr.paul.tChaton.api.entity.IConstant;
+import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.application.api.ConversationMapping;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,8 +29,8 @@ public class TestConversation {
     @Test
     public void startAConversationWithNoMessage() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("id", IConstant.DEFAULT_USER_ID))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(IConstant.DEFAULT_MESSAGE));
+        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("id", AConstant.DEFAULT_USER_ID))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(AConstant.DEFAULT_MESSAGE));
 
     }
 
@@ -38,15 +38,15 @@ public class TestConversation {
     public void conversationWithNoUserId() throws Exception {
 
         mvc.perform(MockMvcRequestBuilders.get("/conversation"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(IConstant.DEFAULT_MESSAGE));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(AConstant.DEFAULT_MESSAGE));
 
     }
 
     @Test
     public void startAConversationWithHello() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("message",IConstant.MESSAGE_HELLO).param("id", IConstant.DEFAULT_USER_ID))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(IConstant.MESSAGE_HELLO));
+        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("message", AConstant.MESSAGE_HELLO).param("id", AConstant.DEFAULT_USER_ID))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(AConstant.MESSAGE_HELLO));
 
     }
 }

@@ -1,6 +1,6 @@
 package fr.paul.tChaton.marketing.service.conversation;
 
-import fr.paul.tChaton.api.entity.IConstant;
+import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.entity.Message;
 import org.junit.Test;
 
@@ -16,9 +16,9 @@ public class ChatTest {
     @Test
     public void caseMessageHello(){
         Chat chat = new Chat();
-        Message messageFromService  = chat.serviceConversation(IConstant.MESSAGE_HELLO, IConstant.DEFAULT_USER_ID);
+        Message messageFromService  = chat.serviceConversation(AConstant.MESSAGE_HELLO, AConstant.DEFAULT_USER_ID);
         assertNotNull(messageFromService);
-        assertEquals(IConstant.MESSAGE_HELLO,messageFromService.getMessage());
+        assertEquals(AConstant.MESSAGE_HELLO,messageFromService.getMessage());
 
     }
 }

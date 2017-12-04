@@ -1,7 +1,7 @@
 package fr.paul.tChaton.api;
 
 import com.google.gson.GsonBuilder;
-import fr.paul.tChaton.api.entity.IConstant;
+import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.entity.Message;
 import fr.paul.tChaton.application.api.HistoryMapping;
 import org.junit.Test;
@@ -33,7 +33,7 @@ public class TestHistorique {
 
     @Test
     public void startAConversationMustStartWhitEmptyHistory() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/history").param("id", IConstant.DEFAULT_USER_ID))
+        mvc.perform(MockMvcRequestBuilders.get("/history").param("id", AConstant.DEFAULT_USER_ID))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.messages").isEmpty());
     }
 

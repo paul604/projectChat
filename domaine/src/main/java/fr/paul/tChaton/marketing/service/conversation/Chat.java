@@ -1,8 +1,8 @@
 package fr.paul.tChaton.marketing.service.conversation;
 
-import fr.paul.tChaton.api.entity.IConstant;
+import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.factory.IFactory;
-import fr.paul.tChaton.api.repo.IRepo;
+import fr.paul.tChaton.api.repo.IDb;
 import fr.paul.tChaton.api.entity.Message;
 
 import javax.annotation.Resource;
@@ -14,11 +14,10 @@ import javax.annotation.Resource;
  */
 public class Chat {
 
-    @Resource
-    IFactory factoy;
+    IFactory factory;
 
     @Resource
-    IRepo repository;
+    IDb repository;
 
     private Message beginConversation() {
         return new Message();
@@ -43,8 +42,8 @@ public class Chat {
 
     private Message treatmentMessage(String messageToService) {
         Message res =null;
-        if(messageToService.contentEquals(IConstant.MESSAGE_HELLO)){
-            res = new Message(IConstant.MESSAGE_HELLO, null);
+        if(messageToService.contentEquals(AConstant.MESSAGE_HELLO)){
+            res = new Message(AConstant.MESSAGE_HELLO, null);
         }
         return res;
     }

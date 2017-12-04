@@ -18,7 +18,7 @@ public class MessageTest {
 
     @Test
     public void createEmptyMessage() throws Exception {
-        assertEquals("empty Message", IConstant.DEFAULT_MESSAGE, new Message().getMessage());
+        assertEquals("empty Message", AConstant.DEFAULT_MESSAGE, new Message().getMessage());
     }
 
     @Test

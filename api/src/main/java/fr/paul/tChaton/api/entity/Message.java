@@ -8,7 +8,7 @@ import java.util.Calendar;
  * @version 1.0.0
  */
 public class Message {
-    private String message = IConstant.DEFAULT_MESSAGE;
+    private String message = AConstant.DEFAULT_MESSAGE;
 
     private User from;
     private Calendar creationDate;
