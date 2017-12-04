@@ -16,7 +16,7 @@ public class ChatTest {
     @Test
     public void caseMessageHello(){
         Chat chat = new Chat();
-        Message messageFromService  = chat.serviceConversation(IConstant.MESSAGE_HELLO);
+        Message messageFromService  = chat.serviceConversation(IConstant.MESSAGE_HELLO, IConstant.DEFAULT_USER_ID);
         assertNotNull(messageFromService);
         assertEquals(IConstant.MESSAGE_HELLO,messageFromService.getMessage());
 

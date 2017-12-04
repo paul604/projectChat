@@ -24,12 +24,15 @@ public class Chat {
         return new Message();
     }
 
-    public Message serviceConversation(Message messageToService) {
-        return serviceConversation(messageToService.getMessage());
+    public Message serviceConversation(Message messageToService, String id) {
+        return serviceConversation(messageToService.getMessage(), id);
     }
 
-    public Message serviceConversation(String messageToService) {
+    public Message serviceConversation(String messageToService, String idString) {
         Message res = null;
+
+        int id = Integer.parseInt(idString);
+
         if(messageToService == null || messageToService.isEmpty()){
             res = beginConversation();
         }else{
