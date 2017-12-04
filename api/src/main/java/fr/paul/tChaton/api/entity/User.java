@@ -24,4 +24,16 @@ public class User {
 
         return id.equals(user.id);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }
