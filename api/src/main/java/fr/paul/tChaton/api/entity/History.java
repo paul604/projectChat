@@ -41,4 +41,15 @@ public class History {
     public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof History)) return false;
+
+        History history = (History) o;
+
+        if (user != null ? !user.equals(history.user) : history.user != null) return false;
+        return messages != null ? messages.equals(history.messages) : history.messages == null;
+    }
 }

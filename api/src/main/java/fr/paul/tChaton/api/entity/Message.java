@@ -55,7 +55,26 @@ public class Message {
         return sendDate;
     }
 
-    //-----------------------------
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setFrom(User from) {
+        this.from = from;
+    }
+
+    public void setForUser(User forUser) {
+        this.forUser = forUser;
+    }
+
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setSendDate(Calendar sendDate) {
+        this.sendDate = sendDate;
+    }
+//-----------------------------
     //          Overide
     //-----------------------------
 

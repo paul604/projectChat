@@ -6,7 +6,6 @@ import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.entity.History;
 import fr.paul.tChaton.api.entity.Message;
 import fr.paul.tChaton.api.entity.User;
-import fr.paul.tChaton.api.entity.comparator.ComparatorMessageSendDate;
 import fr.paul.tChaton.application.api.HistoryMapping;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,17 +16,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.web.method.HandlerMethod;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * @author Paul
@@ -68,36 +66,40 @@ public class TestHistorique {
         cal2.setTime(df.parse(AConstant.DEFAULT_CREATION_DATE2));
 
         List<Message> messageList = new ArrayList<>();
-        messageList.add(new Message(user, AConstant.SERVER_USER, "first", cal));
-
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = new Gson();
 
         MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/conversation").param("message", "first")
                 .param("id", AConstant.DEFAULT_USER_ID)
-                .param("creationDate", AConstant.DEFAULT_CREATION_DATE)).andReturn();
+                .param("creationDate", AConstant.DEFAULT_CREATION_DATE))
+                .andReturn();
         String content = result.getResponse().getContentAsString();
         Message message1Ret = gson.fromJson(content, Message.class);
+
+        messageList.add(new Message(user, AConstant.SERVER_USER, "first", cal));
         messageList.add(message1Ret);
 
 
         Thread.sleep(1000);
 
-        messageList.add(new Message(user, AConstant.SERVER_USER, "second", cal2));
-        mvc.perform(MockMvcRequestBuilders.get("/conversation")
-                .param("message","second")
+        MvcResult result2 = mvc.perform(MockMvcRequestBuilders.get("/conversation")
+                .param("message", "second")
                 .param("id", AConstant.DEFAULT_USER_ID)
-                .param("creationDate", AConstant.DEFAULT_CREATION_DATE2));
-        String content2 = result.getResponse().getContentAsString();
+                .param("creationDate", AConstant.DEFAULT_CREATION_DATE2))
+                .andReturn();
+        String content2 = result2.getResponse().getContentAsString();
         Message message2Ret = gson.fromJson(content2, Message.class);
+
+        messageList.add(new Message(user, AConstant.SERVER_USER, "second", cal2));
         messageList.add(message2Ret);
 
-        messageList.sort(new ComparatorMessageSendDate());
+        MvcResult resultFin = mvc.perform(MockMvcRequestBuilders.get("/history").param("id", AConstant.DEFAULT_USER_ID)).andReturn();
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.messages").value(gsonBuilder.create().toJson(messageList)));
 
-        History history = new History(user, messageList);
-        mvc.perform(MockMvcRequestBuilders.get("/history").param("id", AConstant.DEFAULT_USER_ID))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.messages").isArray())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.messages").value(gsonBuilder.create().toJson(history.getMessages()).toString()));
+        String contentAsString = resultFin.getResponse().getContentAsString();
+        History historyResult = gson.fromJson(contentAsString, History.class);
+
+        assertEquals("checkSizeHistoryAfterTwoMessage", messageList.size(), historyResult.getMessages().size());
 
     }
 }

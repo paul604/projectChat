@@ -23,13 +23,12 @@ public class Main {
 
     public static void main(String... args) {
         try {
-            if(args.length!=4){
-                throw new InvalidParameterException("type, name, url, port");
+            if(args.length==4){
+                AConstant.TYPE_DB = args[0];
+                AConstant.NAME_DB = args[1];
+                AConstant.URL_DB = args[2];
+                AConstant.PORT_DB = args[3];
             }
-            AConstant.TYPE_DB = args[0];
-            AConstant.NAME_DB = args[1];
-            AConstant.URL_DB = args[2];
-            AConstant.PORT_DB = args[3];
             SpringApplication.run(Main.class, args);
 
         }catch (Exception e){

@@ -34,11 +34,11 @@ public class Chat {
 
         db.addMessage(messageToService);
 
-        try {
-            Thread.sleep(5);// use for different time of receive message and send message
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(1);// use for different time of receive message and send message
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         if(messageToService.getMessage()==null || messageToService.getMessage().equalsIgnoreCase("")){
             res = beginConversation(messageToService.getFrom());
