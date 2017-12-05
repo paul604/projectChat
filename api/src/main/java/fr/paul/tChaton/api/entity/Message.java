@@ -12,8 +12,8 @@ public class Message {
 
     private User from;
     private User forUser;
-    private Calendar creationDate;
-    private Calendar sendDate;
+    private Calendar creationDate = Calendar.getInstance();
+    private Calendar sendDate= Calendar.getInstance();
 
     //-----------------------------
     //        Constructeur
@@ -28,7 +28,6 @@ public class Message {
         this(user, forUser);
         this.message = message;
         this.creationDate = creationDate;
-        this.sendDate = Calendar.getInstance();
     }
 
     //-----------------------------

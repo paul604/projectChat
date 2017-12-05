@@ -25,7 +25,7 @@ public class DefaultDb implements IDb {
         setDbUser();
         setDbMessage();
 
-        addUser(new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME));
+        addUser(AConstant.DEFAULT_USER);
     }
 
     @Override

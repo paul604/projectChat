@@ -23,7 +23,7 @@ public class DefaultDbTestMessage {
     @Test
     public void addOneMessage() throws Exception {
         DefaultDb db = new DefaultDb();
-        Message message = new Message(new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME), AConstant.SERVER_USER, AConstant.DEFAULT_MESSAGE, null);
+        Message message = new Message(AConstant.DEFAULT_USER, AConstant.SERVER_USER, AConstant.DEFAULT_MESSAGE, null);
         db.addMessage(message);
 
         List<Message> messages = new ArrayList<>();
@@ -36,7 +36,7 @@ public class DefaultDbTestMessage {
     public void delMessage() throws Exception {
 
         DefaultDb db = new DefaultDb();
-        Message message = new Message(new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME), AConstant.SERVER_USER, AConstant.DEFAULT_MESSAGE, null);
+        Message message = new Message(AConstant.DEFAULT_USER, AConstant.SERVER_USER, AConstant.DEFAULT_MESSAGE, null);
         db.addMessage(message);
 
         db.delMessage(message);
@@ -47,9 +47,9 @@ public class DefaultDbTestMessage {
     @Test
     public void testGetHistoryForDefaultUser() throws Exception {
         DefaultDb db = new DefaultDb();
-        Message message1 = new Message(new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME), AConstant.SERVER_USER, AConstant.DEFAULT_MESSAGE, Calendar.getInstance());
+        Message message1 = new Message(AConstant.DEFAULT_USER, AConstant.SERVER_USER, AConstant.DEFAULT_MESSAGE, Calendar.getInstance());
         Thread.sleep(10);
-        Message message2 = new Message(AConstant.SERVER_USER, new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME), AConstant.DEFAULT_MESSAGE, Calendar.getInstance());
+        Message message2 = new Message(AConstant.SERVER_USER, AConstant.DEFAULT_USER, AConstant.DEFAULT_MESSAGE, Calendar.getInstance());
         db.addMessage(message1);
         db.addMessage(message2);
 

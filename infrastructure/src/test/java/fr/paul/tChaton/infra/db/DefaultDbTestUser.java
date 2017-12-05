@@ -20,7 +20,7 @@ public class DefaultDbTestUser {
     public void addOneUser() throws Exception {
         DefaultDb db = new DefaultDb();
         db.setDbUser();
-        User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
+        User user = AConstant.DEFAULT_USER;
         db.addUser(user);
 
         List<User> users = new ArrayList<>();
@@ -51,7 +51,7 @@ public class DefaultDbTestUser {
 
         DefaultDb db = new DefaultDb();
         db.setDbUser();
-        User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
+        User user = AConstant.DEFAULT_USER;
         db.addUser(user);
 
         db.delUser(user);
@@ -63,7 +63,7 @@ public class DefaultDbTestUser {
     public void getUserWithExistingId() throws Exception {
         DefaultDb db = new DefaultDb();
         db.setDbUser();
-        User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
+        User user = AConstant.DEFAULT_USER;
         db.addUser(user);
 
         assertEquals("get User with existing id", user, db.getUserWithId(AConstant.DEFAULT_USER_ID));
@@ -73,7 +73,7 @@ public class DefaultDbTestUser {
     public void getUserWithNotExistingId() throws Exception {
         DefaultDb db = new DefaultDb();
         db.setDbUser();
-        User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
+        User user = AConstant.DEFAULT_USER;
         db.addUser(user);
 
         assertEquals("get User with not existing id", null, db.getUserWithId("FalseId"));

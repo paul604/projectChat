@@ -34,11 +34,18 @@ public class Chat {
 
         db.addMessage(messageToService);
 
+        try {
+            Thread.sleep(5);// use for different time of receive message and send message
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         if(messageToService.getMessage()==null || messageToService.getMessage().equalsIgnoreCase("")){
             res = beginConversation(messageToService.getFrom());
         }else{
             res = treatmentMessage(messageToService.getFrom(), messageToService.getMessage());
         }
+        db.addMessage(res);
         return res;
     }
 
@@ -52,7 +59,7 @@ public class Chat {
         if (creationDate==null || creationDate.equalsIgnoreCase("")){
             throw new InvalidParameterSpecException("creation Date not null");
         }
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy/HH/mm/ss");
         Calendar cal  = Calendar.getInstance();
         cal.setTime(df.parse(creationDate));
 
@@ -63,6 +70,8 @@ public class Chat {
         Message res =null;
         if(messageToService.contentEquals(AConstant.MESSAGE_HELLO)){
             res = new Message(AConstant.SERVER_USER, user, AConstant.MESSAGE_HELLO, Calendar.getInstance());
+        }else{
+            res = new Message(AConstant.SERVER_USER, user);
         }
         return res;
     }

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -33,7 +34,9 @@ public class ConversationMapping {
 
     @ResponseBody
     @GetMapping("conversation")
-    public ResponseEntity conversation(String message, String id, String creationDate) {
+    public ResponseEntity conversation(@RequestParam(name="message",defaultValue="")String message,
+                                       @RequestParam(name="id",defaultValue="")String id,
+                                       @RequestParam(name="creationDate",defaultValue="")String creationDate) {
         return mkResponse(message, id, creationDate);
     }
 
@@ -48,7 +51,7 @@ public class ConversationMapping {
                     .map(stackTraceElement -> stackTraceElement.toString()+"\n")
                     .reduce((s, s2) -> s+s2)
                     .get());
-            res = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            res = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
         }
         return res;
     }
