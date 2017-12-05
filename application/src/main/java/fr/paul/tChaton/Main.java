@@ -15,7 +15,8 @@ import java.util.Arrays;
  * @since 1.0.0
  * @version 1.0.0
  */
-@SpringBootApplication(scanBasePackages = { "fr.paul.tChaton.application.api" })
+//@SpringBootApplication(scanBasePackages = { "fr.paul.tChaton.application.api" })
+@SpringBootApplication(scanBasePackages = { "fr.paul.tChaton" })
 public class Main {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(Main.class);
