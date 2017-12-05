@@ -3,6 +3,7 @@ package fr.paul.tChaton.infra.factory;
 import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.factory.IFactory;
 import fr.paul.tChaton.api.repo.IDb;
+import fr.paul.tChaton.infra.db.DefaultDb;
 import fr.paul.tChaton.infra.db.MongoDb;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ public class DbFactory implements IFactory {
         if (AConstant.TYPE_DB.equalsIgnoreCase("mongodb")) {
             db = new MongoDb();
         }else{
-            LOGGER.error("type bd error");
+            db = new DefaultDb();
         }
         return db;
     }

@@ -70,17 +70,18 @@ public class DefaultDb implements IDb {
 
     @Override
     public boolean addMessage(Message message) {
-        return false;
+        return this.messageList.add(message);
     }
 
     @Override
     public boolean upMessage(Message message) {
+        // nop
         return false;
     }
 
     @Override
     public boolean delMessage(Message message) {
-        return false;
+        return this.messageList.remove(message);
     }
 
     //-----------------------------
