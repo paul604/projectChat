@@ -19,6 +19,7 @@ public class DefaultDbTestUser {
     @Test
     public void addOneUser() throws Exception {
         DefaultDb db = new DefaultDb();
+        db.setDbUser();
         User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
         db.addUser(user);
 
@@ -31,6 +32,7 @@ public class DefaultDbTestUser {
     @Test
     public void upUser() throws Exception {
         DefaultDb db = new DefaultDb();
+        db.setDbUser();
         User user = new User(AConstant.DEFAULT_USER_ID, "aaaaaaaaaaaaaaaa");
         db.addUser(user);
 
@@ -48,6 +50,7 @@ public class DefaultDbTestUser {
     public void delUser() throws Exception {
 
         DefaultDb db = new DefaultDb();
+        db.setDbUser();
         User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
         db.addUser(user);
 
@@ -59,6 +62,7 @@ public class DefaultDbTestUser {
     @Test
     public void getUserWithExistingId() throws Exception {
         DefaultDb db = new DefaultDb();
+        db.setDbUser();
         User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
         db.addUser(user);
 
@@ -68,6 +72,7 @@ public class DefaultDbTestUser {
     @Test
     public void getUserWithNotExistingId() throws Exception {
         DefaultDb db = new DefaultDb();
+        db.setDbUser();
         User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
         db.addUser(user);
 

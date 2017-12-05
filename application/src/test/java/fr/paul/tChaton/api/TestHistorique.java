@@ -52,8 +52,8 @@ public class TestHistorique {
         User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
 
         List<Message> messageList = new ArrayList<>();
-        messageList.add(new Message(user, "first", Calendar.getInstance()));
-        messageList.add(new Message(user, "second", Calendar.getInstance()));
+        messageList.add(new Message(user, AConstant.SERVER_USER, "first", Calendar.getInstance()));
+        messageList.add(new Message(user, AConstant.SERVER_USER, "second", Calendar.getInstance()));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 

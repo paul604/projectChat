@@ -22,7 +22,6 @@ public class ChatTest {
 
     public static void setUp(Chat chat) {
         chat.setDb(new DefaultDb());
-        chat.getDb().addUser(new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME));
     }
 
     @Test

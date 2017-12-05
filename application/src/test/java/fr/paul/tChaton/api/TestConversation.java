@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -31,7 +32,7 @@ public class TestConversation {
     @Test
     public void startAConversationWithNoMessage() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("id", AConstant.DEFAULT_USER_ID))
+        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("id", AConstant.DEFAULT_USER_ID).param("creationDate", AConstant.DEFAULT_CREATION_DATE))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(AConstant.DEFAULT_MESSAGE));
 
     }
@@ -39,15 +40,15 @@ public class TestConversation {
     @Test
     public void conversationWithNoUserId() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.get("/conversation"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(AConstant.DEFAULT_MESSAGE));
+        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("creationDate", AConstant.DEFAULT_CREATION_DATE))
+                .andExpect(MockMvcResultMatchers.status().is(400));
 
     }
 
     @Test
     public void startAConversationWithHello() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("message", AConstant.MESSAGE_HELLO).param("id", AConstant.DEFAULT_USER_ID))
+        mvc.perform(MockMvcRequestBuilders.get("/conversation").param("message", AConstant.MESSAGE_HELLO).param("id", AConstant.DEFAULT_USER_ID).param("creationDate", AConstant.DEFAULT_CREATION_DATE))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(AConstant.MESSAGE_HELLO));
 
     }

@@ -26,7 +26,7 @@ public class Chat {
     private IDb db;
 
     private Message beginConversation(User user) {
-        return new Message(user);
+        return new Message(AConstant.SERVER_USER, user);
     }
 
     public Message serviceConversation(Message messageToService){
@@ -34,10 +34,10 @@ public class Chat {
 
         db.addMessage(messageToService);
 
-        if(messageToService == null || messageToService.getMessage().equalsIgnoreCase("")){
+        if(messageToService.getMessage()==null || messageToService.getMessage().equalsIgnoreCase("")){
             res = beginConversation(messageToService.getFrom());
         }else{
-            res = treatmentMessage(messageToService.getMessage());
+            res = treatmentMessage(messageToService.getFrom(), messageToService.getMessage());
         }
         return res;
     }
@@ -46,7 +46,7 @@ public class Chat {
 
         User user = db.getUserWithId(idString);
         if (user == null){
-            throw new UserIdNotFound(idString+" non valid");
+            throw new UserIdNotFound("id null ou non valid");
         }
 
         if (creationDate==null || creationDate.equalsIgnoreCase("")){
@@ -56,17 +56,20 @@ public class Chat {
         Calendar cal  = Calendar.getInstance();
         cal.setTime(df.parse(creationDate));
 
-        return serviceConversation(new Message(user, messageToService, cal));
+        return serviceConversation(new Message(user, AConstant.SERVER_USER, messageToService, cal));
     }
 
-    private Message treatmentMessage(String messageToService) {
+    private Message treatmentMessage(User user, String messageToService) {
         Message res =null;
         if(messageToService.contentEquals(AConstant.MESSAGE_HELLO)){
-            res = new Message(new User(AConstant.SERVER_USER_ID, AConstant.SERVER_USER_NAME), AConstant.MESSAGE_HELLO, Calendar.getInstance());
+            res = new Message(AConstant.SERVER_USER, user, AConstant.MESSAGE_HELLO, Calendar.getInstance());
         }
         return res;
     }
 
+    //-----------------------------
+    //          Get & Set
+    //-----------------------------
 
     public IDb getDb() {
         return db;

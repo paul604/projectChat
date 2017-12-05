@@ -14,6 +14,7 @@ public abstract class AConstant {
     public static final String SERVER_USER_ID = "S001";
     public static final String SERVER_USER_NAME="SERVER_BOT" ;
     public static final String DEFAULT_CREATION_DATE="01/02/2017" ;
+    public static final User SERVER_USER = new User(AConstant.SERVER_USER_ID, AConstant.SERVER_USER_NAME);
 
     public static String TYPE_DB = "";
     public static String URL_DB = "";

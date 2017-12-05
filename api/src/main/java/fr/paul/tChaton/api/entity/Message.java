@@ -11,6 +11,7 @@ public class Message {
     private String message = AConstant.DEFAULT_MESSAGE;
 
     private User from;
+    private User forUser;
     private Calendar creationDate;
     private Calendar sendDate;
 
@@ -18,12 +19,13 @@ public class Message {
     //        Constructeur
     //-----------------------------
 
-    public Message(User user) {
+    public Message(User user, User forUser) {
         this.from = user;
+        this.forUser = forUser;
     }
 
-    public Message(User user, String message, Calendar creationDate) {
-        this(user);
+    public Message(User user, User forUser, String message, Calendar creationDate) {
+        this(user, forUser);
         this.message = message;
         this.creationDate = creationDate;
         this.sendDate = Calendar.getInstance();
@@ -36,6 +38,10 @@ public class Message {
 
     public User getFrom() {
         return from;
+    }
+
+    public User getForUser() {
+        return forUser;
     }
 
     public String getMessage() {
@@ -64,6 +70,7 @@ public class Message {
 
         if (message != null ? !message.equals(message1.message) : message1.message != null) return false;
         if (from != null ? !from.equals(message1.from) : message1.from != null) return false;
+        if (forUser != null ? !forUser.equals(message1.forUser) : message1.forUser != null) return false;
         if (creationDate != null ? !creationDate.equals(message1.creationDate) : message1.creationDate != null)
             return false;
         return sendDate != null ? sendDate.equals(message1.sendDate) : message1.sendDate == null;

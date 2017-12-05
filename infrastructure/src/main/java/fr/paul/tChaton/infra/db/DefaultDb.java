@@ -1,5 +1,6 @@
 package fr.paul.tChaton.infra.db;
 
+import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.entity.Message;
 import fr.paul.tChaton.api.entity.User;
 import fr.paul.tChaton.api.repo.IDb;
@@ -21,6 +22,8 @@ public class DefaultDb implements IDb {
     public DefaultDb() {
         setDbUser();
         setDbMessage();
+
+        addUser(new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME));
     }
 
     @Override
