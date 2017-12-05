@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
@@ -139,6 +140,11 @@ public class MongoDb implements IDb {
             ret = false;
         }
         return ret;
+    }
+
+    @Override
+    public List<Message> getHistoryOf(String userId) {
+        return null;
     }
 
     //-----------------------------

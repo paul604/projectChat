@@ -3,11 +3,13 @@ package fr.paul.tChaton.infra.db;
 import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.entity.Message;
 import fr.paul.tChaton.api.entity.User;
+import fr.paul.tChaton.api.entity.comparator.ComparatorMessageSendDate;
 import fr.paul.tChaton.api.repo.IDb;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author Paul
@@ -85,6 +87,15 @@ public class DefaultDb implements IDb {
     @Override
     public boolean delMessage(Message message) {
         return this.messageList.remove(message);
+    }
+
+    @Override
+    public List<Message> getHistoryOf(String userId) {
+        List<Message> collect = this.messageList.stream()
+                .filter(message -> message.getFrom().getId().equals(userId) || message.getForUser().getId().equals(userId))
+                .collect(Collectors.toList());
+        collect.sort(new ComparatorMessageSendDate());
+        return collect;
     }
 
     //-----------------------------

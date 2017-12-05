@@ -3,6 +3,8 @@ package fr.paul.tChaton.api.repo;
 import fr.paul.tChaton.api.entity.Message;
 import fr.paul.tChaton.api.entity.User;
 
+import java.util.List;
+
 /**
  * @author Paul
  * @since 1.0.0
@@ -29,6 +31,8 @@ public interface IDb {
     boolean upMessage(Message message);
 
     boolean delMessage(Message message);
+
+    List<Message> getHistoryOf(String userId);
 
 
 }

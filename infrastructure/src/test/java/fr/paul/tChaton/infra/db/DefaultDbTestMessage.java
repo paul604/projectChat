@@ -6,6 +6,7 @@ import fr.paul.tChaton.api.entity.User;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -41,5 +42,21 @@ public class DefaultDbTestMessage {
         db.delMessage(message);
 
         assertTrue(db.getMessageList().isEmpty());
+    }
+
+    @Test
+    public void testGetHistoryForDefaultUser() throws Exception {
+        DefaultDb db = new DefaultDb();
+        Message message1 = new Message(new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME), AConstant.SERVER_USER, AConstant.DEFAULT_MESSAGE, Calendar.getInstance());
+        Thread.sleep(10);
+        Message message2 = new Message(AConstant.SERVER_USER, new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME), AConstant.DEFAULT_MESSAGE, Calendar.getInstance());
+        db.addMessage(message1);
+        db.addMessage(message2);
+
+        List<Message> messages = new ArrayList<>();
+        messages.add(message1);
+        messages.add(message2);
+
+        assertArrayEquals("testGetHistoryForDefaultUser", messages.toArray(new Message[0]), db.getHistoryOf(AConstant.DEFAULT_USER_ID).toArray(new Message[0]));
     }
 }
