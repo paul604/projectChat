@@ -29,7 +29,6 @@ public class Chat {
     public Message serviceConversation(String messageToService, String idString) {
         Message res = null;
 
-        int id = Integer.parseInt(idString);
 
         if(messageToService == null || messageToService.isEmpty()){
             res = beginConversation();

@@ -18,7 +18,16 @@ public class ChatTest {
         Chat chat = new Chat();
         Message messageFromService  = chat.serviceConversation(AConstant.MESSAGE_HELLO, AConstant.DEFAULT_USER_ID);
         assertNotNull(messageFromService);
-        assertEquals(AConstant.MESSAGE_HELLO,messageFromService.getMessage());
+        assertEquals(AConstant.MESSAGE_HELLO, messageFromService.getMessage());
+
+    }
+
+    @Test
+    public void caseMessageVoid(){
+        Chat chat = new Chat();
+        Message messageFromService  = chat.serviceConversation("", AConstant.DEFAULT_USER_ID);
+        assertNotNull(messageFromService);
+        assertEquals(AConstant.DEFAULT_MESSAGE, messageFromService.getMessage());
 
     }
 }
