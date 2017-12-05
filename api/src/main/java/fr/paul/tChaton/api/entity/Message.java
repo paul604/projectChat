@@ -18,11 +18,12 @@ public class Message {
     //        Constructeur
     //-----------------------------
 
-    public Message() {
-
+    public Message(User user) {
+        this.from = user;
     }
 
-    public Message(String message, Calendar creationDate) {
+    public Message(User user, String message, Calendar creationDate) {
+        this(user);
         this.message = message;
         this.creationDate = creationDate;
         this.sendDate = Calendar.getInstance();
@@ -31,6 +32,11 @@ public class Message {
     //-----------------------------
     //          Get & Set
     //-----------------------------
+
+
+    public User getFrom() {
+        return from;
+    }
 
     public String getMessage() {
         return message;
@@ -57,6 +63,7 @@ public class Message {
         Message message1 = (Message) o;
 
         if (message != null ? !message.equals(message1.message) : message1.message != null) return false;
+        if (from != null ? !from.equals(message1.from) : message1.from != null) return false;
         if (creationDate != null ? !creationDate.equals(message1.creationDate) : message1.creationDate != null)
             return false;
         return sendDate != null ? sendDate.equals(message1.sendDate) : message1.sendDate == null;

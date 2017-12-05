@@ -3,6 +3,7 @@ package fr.paul.tChaton.api;
 import com.google.gson.GsonBuilder;
 import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.entity.Message;
+import fr.paul.tChaton.api.entity.User;
 import fr.paul.tChaton.application.api.HistoryMapping;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,9 +49,11 @@ public class TestHistorique {
     @Test
     public void checkSizeHistoryAfterTwoMessage() throws Exception {
 
+        User user = new User(AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_USER_NAME);
+
         List<Message> messageList = new ArrayList<>();
-        messageList.add(new Message("first", Calendar.getInstance()));
-        messageList.add(new Message("second", Calendar.getInstance()));
+        messageList.add(new Message(user, "first", Calendar.getInstance()));
+        messageList.add(new Message(user, "second", Calendar.getInstance()));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 
