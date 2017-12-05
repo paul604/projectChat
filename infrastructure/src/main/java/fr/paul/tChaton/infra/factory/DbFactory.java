@@ -19,10 +19,13 @@ public class DbFactory implements IFactory {
 
     @Override
     public IDb createDb() {
+        LOGGER.info("setting bd");
         IDb db = null;
         if (AConstant.TYPE_DB.equalsIgnoreCase("mongodb")) {
+            LOGGER.info("mongoDb");
             db = new MongoDb();
         }else{
+            LOGGER.info("defaultDb");
             db = new DefaultDb();
         }
         return db;
