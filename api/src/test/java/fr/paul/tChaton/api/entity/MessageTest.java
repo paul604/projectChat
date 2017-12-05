@@ -10,26 +10,29 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * Created by Paul on 27/11/17.
+ * @author Paul
+ * @since 1.0.0
+ * @version 1.0.0
  */
 public class MessageTest {
 
     @Test
     public void createEmptyMessage() throws Exception {
-        assertEquals("empty Message", IConstant.DEFAULT_MESSAGE, new Message().getMessage());
+        assertEquals("empty Message", AConstant.DEFAULT_MESSAGE, new Message(null, null).getMessage());
     }
 
     @Test
     public void sendDate() throws Exception {
         assertEquals("test sendDate",
                 Calendar.getInstance().getTime().toString(),
-                new Message("msg test", null).getSendDate().getTime().toString());
+                new Message(null, null, "msg test", null).getSendDate().getTime().toString());
     }
 
     @Test
     public void compareSendDateAscending() throws Exception {
-        Message message1 = new Message("1", null);
-        Message message2 = new Message("2", null);
+        Message message1 = new Message(null, null, "1", null);
+        Thread.sleep(10);//for different time
+        Message message2 = new Message(null, null, "2", null);
 
         List<Message> messagesOrderOk = new LinkedList<>();
         messagesOrderOk.add(message1);
@@ -47,14 +50,15 @@ public class MessageTest {
 
     @Test
     public void compareSendDateDescending() throws Exception {
-        Message message1 = new Message("1", null);
-        Message message2 = new Message("2", null);
+        Message message1 = new Message(null, null, "1", null);
+        Thread.sleep(10);//for different time
+        Message message2 = new Message(null, null, "2", null);
 
-        LinkedList<Message> messagesOrderOk = new LinkedList<>();
+        List<Message> messagesOrderOk = new LinkedList<>();
         messagesOrderOk.add(message2);
         messagesOrderOk.add(message1);
 
-        LinkedList<Message> messages = new LinkedList<>();
+        List<Message> messages = new LinkedList<>();
         messages.add(message1);
         messages.add(message2);
 

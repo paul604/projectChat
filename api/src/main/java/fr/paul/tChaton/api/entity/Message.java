@@ -1,8 +1,6 @@
 package fr.paul.tChaton.api.entity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * @author Paul
@@ -10,34 +8,40 @@ import java.util.List;
  * @version 1.0.0
  */
 public class Message {
-    private String message = IConstant.DEFAULT_MESSAGE;
+    private String message = AConstant.DEFAULT_MESSAGE;
 
-    List<Message> history = new ArrayList<>();
-
-    private Calendar creationDate;
-    private Calendar sendDate;
+    private User from;
+    private User forUser;
+    private Calendar creationDate = Calendar.getInstance();
+    private Calendar sendDate= Calendar.getInstance();
 
     //-----------------------------
     //        Constructeur
     //-----------------------------
 
-    public Message() {
-
+    public Message(User user, User forUser) {
+        this.from = user;
+        this.forUser = forUser;
     }
 
-    public Message(String message, Calendar creationDate) {
+    public Message(User user, User forUser, String message, Calendar creationDate) {
+        this(user, forUser);
         this.message = message;
         this.creationDate = creationDate;
-        this.sendDate = Calendar.getInstance();
-    }
-
-    public Message(Exception exception) {
-
     }
 
     //-----------------------------
     //          Get & Set
     //-----------------------------
+
+
+    public User getFrom() {
+        return from;
+    }
+
+    public User getForUser() {
+        return forUser;
+    }
 
     public String getMessage() {
         return message;
@@ -51,19 +55,26 @@ public class Message {
         return sendDate;
     }
 
-    public List<Message> getHistory() {
-        return history;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setHistory(List<Message> history) {
-        this.history = history;
+    public void setFrom(User from) {
+        this.from = from;
     }
 
-    public boolean isEmpty() {
-        return false; //TODO
+    public void setForUser(User forUser) {
+        this.forUser = forUser;
     }
 
-    //-----------------------------
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setSendDate(Calendar sendDate) {
+        this.sendDate = sendDate;
+    }
+//-----------------------------
     //          Overide
     //-----------------------------
 
@@ -76,6 +87,8 @@ public class Message {
         Message message1 = (Message) o;
 
         if (message != null ? !message.equals(message1.message) : message1.message != null) return false;
+        if (from != null ? !from.equals(message1.from) : message1.from != null) return false;
+        if (forUser != null ? !forUser.equals(message1.forUser) : message1.forUser != null) return false;
         if (creationDate != null ? !creationDate.equals(message1.creationDate) : message1.creationDate != null)
             return false;
         return sendDate != null ? sendDate.equals(message1.sendDate) : message1.sendDate == null;

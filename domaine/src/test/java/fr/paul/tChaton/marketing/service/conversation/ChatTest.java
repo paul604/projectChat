@@ -1,8 +1,15 @@
 package fr.paul.tChaton.marketing.service.conversation;
 
-import fr.paul.tChaton.api.entity.IConstant;
+import fr.paul.tChaton.api.entity.AConstant;
 import fr.paul.tChaton.api.entity.Message;
+import fr.paul.tChaton.api.entity.User;
+import fr.paul.tChaton.api.exception.UserIdNotFound;
+import fr.paul.tChaton.infra.db.DefaultDb;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.security.spec.InvalidParameterSpecException;
+import java.text.ParseException;
 
 import static org.junit.Assert.*;
 
@@ -13,12 +20,27 @@ import static org.junit.Assert.*;
  */
 public class ChatTest {
 
+    public static void setUp(Chat chat) {
+        chat.setDb(new DefaultDb());
+    }
+
     @Test
-    public void caseMessageHello(){
+    public void caseMessageHello() throws ParseException, UserIdNotFound, InvalidParameterSpecException {
         Chat chat = new Chat();
-        Message messageFromService  = chat.serviceConversation(IConstant.MESSAGE_HELLO);
+        setUp(chat);
+        Message messageFromService  = chat.serviceConversation(AConstant.MESSAGE_HELLO, AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_CREATION_DATE);
         assertNotNull(messageFromService);
-        assertEquals(IConstant.MESSAGE_HELLO,messageFromService.getMessage());
+        assertEquals(AConstant.MESSAGE_HELLO, messageFromService.getMessage());
+
+    }
+
+    @Test
+    public void caseMessageVoid() throws ParseException, UserIdNotFound, InvalidParameterSpecException {
+        Chat chat = new Chat();
+        setUp(chat);
+        Message messageFromService  = chat.serviceConversation("", AConstant.DEFAULT_USER_ID, AConstant.DEFAULT_CREATION_DATE);
+        assertNotNull(messageFromService);
+        assertEquals(AConstant.DEFAULT_MESSAGE, messageFromService.getMessage());
 
     }
 }
